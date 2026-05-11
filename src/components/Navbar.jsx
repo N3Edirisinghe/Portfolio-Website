@@ -4,12 +4,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState('Home');
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+      setScrollY(window.scrollY);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -30,65 +32,67 @@ const Navbar = () => {
     <motion.header 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300`} 
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500`} 
       style={{ 
-        background: scrolled ? 'rgba(5, 5, 8, 0.8)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(16px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(255, 255, 255, 0.05)' : '1px solid transparent',
-        padding: scrolled ? '1rem 0' : '1.5rem 0'
+        background: scrolled ? 'rgba(5, 10, 10, 0.4)' : 'transparent',
+        backdropFilter: scrolled ? 'blur(24px) saturate(180%)' : 'none',
+        WebkitBackdropFilter: scrolled ? 'blur(24px) saturate(180%)' : 'none',
+        borderBottom: scrolled ? '1px solid rgba(255, 255, 255, 0.03)' : '1px solid transparent',
+        padding: scrolled ? '1.2rem 0' : '2rem 0'
       }}
     >
-      <div className="container flex justify-between items-center" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <a href="#home" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.15rem', fontWeight: 800, fontFamily: 'var(--font-display)', color: 'var(--text-main)', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+      <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <a href="#home" className="logo" style={{ 
+          display: 'flex', 
+          alignItems: 'center', 
+          gap: '12px', 
+          fontSize: '1.4rem', 
+          fontWeight: 400, 
+          fontFamily: 'var(--font-serif)', 
+          color: '#fff', 
+          textDecoration: 'none',
+          letterSpacing: '1px'
+        }}>
           <div style={{
+            width: '32px',
+            height: '32px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            background: 'rgba(0, 255, 157, 0.1)',
-            padding: '8px',
-            borderRadius: '10px',
-            border: '1px solid rgba(0, 255, 157, 0.2)'
+            background: 'rgba(0, 245, 212, 0.05)',
+            borderRadius: '50%',
+            border: '1px solid rgba(0, 245, 212, 0.1)'
           }}>
-            <Cpu color="var(--primary)" size={22} />
+            <Cpu color="var(--primary)" size={18} />
           </div>
-          <span style={{ letterSpacing: '0.5px' }}>
-            Nilupul <span className="text-gradient">Thisaranga</span>
+          <span style={{ fontStyle: 'italic' }}>
+            Nilupul <span style={{ fontWeight: 600, color: 'var(--primary)', fontStyle: 'normal' }}>T.</span>
           </span>
         </a>
 
         {/* Desktop Nav */}
         <nav style={{ display: 'none' }} className="md-flex">
-          <ul style={{ display: 'flex', gap: '0.15rem', listStyle: 'none', margin: 0, padding: 0 }}>
+          <ul style={{ display: 'flex', gap: '0.5rem', listStyle: 'none', margin: 0, padding: 0 }}>
             {navLinks.map((link, index) => (
-              <li key={link.name} style={{ position: 'relative' }}>
+              <li key={link.name}>
                 <a 
                   href={link.href} 
                   className={`nav-link ${activeLink === link.name ? 'active' : ''}`}
                   onClick={() => setActiveLink(link.name)}
                   style={{ 
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '4px',
-                    padding: '6px 10px',
-                    fontSize: '0.72rem', 
-                    fontWeight: 600, 
-                    letterSpacing: '0.5px', 
+                    padding: '8px 16px',
+                    fontSize: '0.75rem', 
+                    fontWeight: 500, 
+                    letterSpacing: '1px', 
                     textTransform: 'uppercase',
-                    color: 'var(--text-main)',
+                    color: activeLink === link.name ? 'var(--primary)' : 'var(--text-muted)',
                     textDecoration: 'none',
-                    borderRadius: '8px',
-                    transition: 'all 0.3s ease'
+                    borderRadius: '100px',
+                    transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                    background: activeLink === link.name ? 'rgba(0, 245, 212, 0.05)' : 'transparent'
                   }}
                 >
-                  <span className="mono-text" style={{ 
-                    fontSize: '0.65rem', 
-                    color: 'var(--primary)',
-                    opacity: 0.8
-                  }}>
-                    0{index + 1}.
-                  </span>
                   {link.name}
                 </a>
               </li>
@@ -101,18 +105,18 @@ const Navbar = () => {
           className="md-hidden" 
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
           style={{ 
-            background: 'rgba(255, 255, 255, 0.05)', 
-            border: '1px solid rgba(255, 255, 255, 0.1)', 
+            background: 'rgba(255, 255, 255, 0.03)', 
+            border: '1px solid rgba(255, 255, 255, 0.05)', 
             color: 'var(--primary)', 
             cursor: 'pointer',
-            padding: '8px',
-            borderRadius: '8px',
+            padding: '10px',
+            borderRadius: '50%',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center'
           }}
         >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
@@ -120,22 +124,22 @@ const Navbar = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
             style={{ 
               position: 'absolute', 
               top: '100%', 
               left: 0, 
               width: '100%', 
-              background: 'rgba(5, 5, 8, 0.95)',
-              backdropFilter: 'blur(20px)',
-              WebkitBackdropFilter: 'blur(20px)',
-              borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+              background: 'rgba(2, 6, 6, 0.98)',
+              backdropFilter: 'blur(30px)',
+              WebkitBackdropFilter: 'blur(30px)',
+              borderBottom: '1px solid rgba(255, 255, 255, 0.03)',
               overflow: 'hidden'
             }}
           >
-            <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               {navLinks.map((link, index) => (
                 <a 
                   key={link.name} 
@@ -147,18 +151,19 @@ const Navbar = () => {
                   style={{ 
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '12px',
-                    fontSize: '1.2rem', 
-                    fontWeight: 600,
-                    color: 'var(--text-main)',
+                    justifyContent: 'space-between',
+                    fontSize: '1.1rem', 
+                    fontWeight: 500,
+                    color: activeLink === link.name ? 'var(--primary)' : 'var(--text-main)',
                     textDecoration: 'none',
-                    padding: '12px 16px',
-                    borderRadius: '12px',
-                    background: 'rgba(255, 255, 255, 0.02)'
+                    padding: '16px 24px',
+                    borderRadius: '16px',
+                    background: activeLink === link.name ? 'rgba(0, 245, 212, 0.05)' : 'transparent',
+                    fontFamily: 'var(--font-serif)'
                   }}
                 >
-                  <span className="mono-text" style={{ color: 'var(--primary)' }}>0{index + 1}.</span>
-                  {link.name}
+                  <span>{link.name}</span>
+                  <Cpu size={16} opacity={activeLink === link.name ? 1 : 0} />
                 </a>
               ))}
             </div>
@@ -173,14 +178,12 @@ const Navbar = () => {
         }
         
         .nav-link:hover {
-          background: rgba(0, 255, 157, 0.1);
-          color: var(--primary) !important;
+          color: #fff !important;
+          background: rgba(255, 255, 255, 0.03);
         }
 
         .nav-link.active {
-          background: rgba(0, 255, 157, 0.05);
-          color: var(--primary) !important;
-          border: 1px solid rgba(0, 255, 157, 0.2);
+          box-shadow: inset 0 0 10px rgba(0, 245, 212, 0.1);
         }
       `}</style>
     </motion.header>

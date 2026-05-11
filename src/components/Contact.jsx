@@ -89,21 +89,23 @@ const Contact = () => {
           transition={{ duration: 0.6 }}
         >
           {/* Section Header */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem', justifyContent: 'center' }}>
-            <div style={{ height: '1px', flex: 1, background: 'var(--border-color)', maxWidth: '100px' }}></div>
-            <h2 style={{ margin: 0, textAlign: 'center', fontSize: 'clamp(1.6rem, 3vw, 2.4rem)' }}>
-              <span className="mono-text" style={{ fontSize: '1rem', marginRight: '0.5rem', display: 'block', color: 'var(--primary)' }}>08. What's Next?</span>
-              Get In Touch
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '5rem', justifyContent: 'center' }}>
+            <div style={{ height: '1px', flex: 1, background: 'rgba(255, 255, 255, 0.05)', maxWidth: '200px' }}></div>
+            <h2 style={{ margin: 0, textAlign: 'center', color: '#fff' }}>
+              <span style={{ fontSize: '0.8rem', color: 'var(--primary)', letterSpacing: '3px', textTransform: 'uppercase', display: 'block', marginBottom: '1rem', fontWeight: 600 }}>08. Protocol</span>
+              Initiate <span style={{ fontStyle: 'italic', fontWeight: 500 }}>Connection</span>
             </h2>
-            <div style={{ height: '1px', flex: 1, background: 'var(--border-color)', maxWidth: '100px' }}></div>
+            <div style={{ height: '1px', flex: 1, background: 'rgba(255, 255, 255, 0.05)', maxWidth: '200px' }}></div>
           </div>
 
           <div className="grid grid-cols-2" style={{ gap: '4rem' }}>
             {/* Left — Contact Info */}
             <div>
-              <p style={{ fontSize: '1.1rem', marginBottom: '2rem' }}>
-                I'm currently looking for new opportunities to apply my cybersecurity skills and contribute to innovative projects.
-                Whether you have a question, a project proposal, or just want to say hi, I'll try my best to get back to you!
+              <p style={{ fontSize: '1.2rem', fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: '#fff', opacity: 0.9, marginBottom: '2.5rem', lineHeight: '1.7' }}>
+                Secure a direct line of communication for future architectural collaborations.
+              </p>
+              <p style={{ fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '3rem', lineHeight: '1.8' }}>
+                Whether you're seeking a security-first developer for a high-stakes project or simply wish to discuss the evolving landscape of digital defense, I am available for intellectual exchange.
               </p>
 
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', marginBottom: '3rem' }}>
@@ -236,21 +238,31 @@ const Contact = () => {
                     {/* Submit Button */}
                     <motion.button
                       type="submit"
-                      className="btn btn-primary"
-                      style={{ width: '100%', justifyContent: 'center', gap: '10px', fontSize: '1rem', padding: '1rem' }}
+                      className="btn"
+                      style={{ 
+                        width: '100%', 
+                        justifyContent: 'center', 
+                        gap: '12px', 
+                        fontSize: '0.9rem', 
+                        padding: '1.2rem',
+                        background: 'var(--primary)',
+                        color: 'var(--bg-dark)',
+                        borderRadius: '100px',
+                        letterSpacing: '1px'
+                      }}
                       disabled={status === 'sending'}
                       whileHover={{ scale: status === 'sending' ? 1 : 1.02 }}
                       whileTap={{ scale: status === 'sending' ? 1 : 0.98 }}
                     >
                       {status === 'sending' ? (
                         <>
-                          <Loader size={18} className="animate-spin" style={{ animation: 'spin 1s linear infinite' }} />
-                          Transmitting...
+                          <Loader size={18} className="animate-spin" />
+                          Transmitting Intel...
                         </>
                       ) : (
                         <>
                           <Send size={18} />
-                          Send Message
+                          Secure Send
                         </>
                       )}
                     </motion.button>

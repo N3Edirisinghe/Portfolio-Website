@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
 import { Terminal as TerminalIcon, ArrowRight, Shield, Download, X, Maximize2, ChevronRight } from 'lucide-react';
 import profilePic from '../assets/Profile Pic.png';
+import cinematicBg from '../assets/cinematic_bg.png';
 
 const Typewriter = ({ texts, delay = 100 }) => {
   const [currentText, setCurrentText] = useState('');
@@ -46,9 +47,9 @@ const Typewriter = ({ texts, delay = 100 }) => {
 
 const CyberTerminal = () => {
   const [history, setHistory] = useState([
-    { type: 'system', content: 'NILUPUL_OS v2.0.4 - INITIALIZING...' },
-    { type: 'system', content: 'SECURE_SHELL ESTABLISHED' },
-    { type: 'output', content: 'Welcome, Guest. Type "help" for available commands.' }
+    { type: 'system', content: 'SYSTEM_ACCESS :: ESTABLISHED' },
+    { type: 'system', content: 'ENCRYPTION :: ACTIVE' },
+    { type: 'output', content: 'Welcome. Type "help" to navigate the system.' }
   ]);
   const [input, setInput] = useState('');
   const terminalEndRef = useRef(null);
@@ -72,30 +73,26 @@ const CyberTerminal = () => {
 
     switch (cmd) {
       case 'help':
-        response = 'Available commands: whoami, ls, skills, contact, clear, date';
+        response = 'Commands: whoami, projects, skills, contact, clear, time';
         break;
       case 'whoami':
-        response = 'Nilupul Thisaranga Edirisinghe - Cybersecurity Undergraduate. Specializing in secure architectures and full-stack development.';
+        response = 'Nilupul Thisaranga Edirisinghe — Cybersecurity Strategist & Full Stack Architect.';
         break;
-      case 'ls':
-        response = 'PROJECTS: SLTC-Voting, Lanka Smartmart, Portfolio-V2, Network-Scanner...';
+      case 'projects':
+        response = 'DEPLOYED: UniVote, Lanka Smartmart, Secure-Scan-V2...';
         break;
       case 'skills':
-        response = 'CORE: React, Node.js, Python, Java | SECURITY: Penetration Testing, Log Analysis, Secure Coding';
+        response = 'TECH: React, Node.js, Python, Java | SEC: Pentesting, Log Analysis, Secure Architecture';
         break;
-      case 'date':
+      case 'time':
         response = new Date().toLocaleString();
         break;
       case 'clear':
         setHistory([]);
         setInput('');
         return;
-      case 'hello':
-      case 'hi':
-        response = 'System: Access granted. How can I help you today?';
-        break;
       default:
-        response = `Command not found: ${cmd}. Type "help" for a list of commands.`;
+        response = `Unknown command: ${cmd}. Type "help" for a list of commands.`;
     }
 
     setHistory([...newHistory, { type: 'output', content: response }]);
@@ -103,62 +100,63 @@ const CyberTerminal = () => {
   };
 
   return (
-    <div className="glass-panel" style={{ 
+    <div style={{ 
       width: '100%', 
-      maxWidth: '500px', 
-      height: '300px', 
-      background: 'rgba(5, 5, 8, 0.95)',
-      border: '1px solid rgba(0, 255, 157, 0.2)',
-      borderRadius: '8px',
+      maxWidth: '550px', 
+      height: '320px', 
+      background: 'rgba(5, 15, 15, 0.4)',
+      backdropFilter: 'blur(20px)',
+      WebkitBackdropFilter: 'blur(20px)',
+      border: '1px solid rgba(255, 255, 255, 0.05)',
+      borderRadius: '24px',
       overflow: 'hidden',
       display: 'flex',
       flexDirection: 'column',
-      boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
+      boxShadow: '0 20px 50px rgba(0,0,0,0.4)'
     }}>
       {/* Terminal Header */}
       <div style={{ 
-        padding: '8px 12px', 
-        background: 'rgba(0, 255, 157, 0.05)', 
-        borderBottom: '1px solid rgba(0, 255, 157, 0.1)',
+        padding: '12px 20px', 
+        background: 'rgba(255, 255, 255, 0.02)', 
+        borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center'
       }}>
-        <div style={{ display: 'flex', gap: '6px' }}>
-          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff5f56' }} />
-          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ffbd2e' }} />
-          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#27c93f' }} />
+        <div style={{ display: 'flex', gap: '8px' }}>
+          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)' }} />
+          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)' }} />
+          <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: 'rgba(255,255,255,0.1)' }} />
         </div>
-        <span className="mono-text" style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>bash — nilupul-thisaranga</span>
-        <Maximize2 size={12} color="var(--text-muted)" />
+        <span className="mono-text" style={{ fontSize: '0.6rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '2px' }}>Terminal Session</span>
+        <div style={{ width: '20px' }} />
       </div>
 
       {/* Terminal Content */}
       <div style={{ 
         flex: 1, 
-        padding: '12px', 
+        padding: '20px', 
         overflowY: 'auto', 
         fontFamily: 'var(--font-mono)',
-        fontSize: '0.85rem',
-        scrollbarWidth: 'thin'
+        fontSize: '0.8rem',
+        scrollbarWidth: 'none'
       }}>
         {history.map((line, i) => (
-          <div key={i} style={{ marginBottom: '4px', lineHeight: '1.4' }}>
+          <div key={i} style={{ marginBottom: '6px', lineHeight: '1.5' }}>
             {line.type === 'command' && (
               <span style={{ color: 'var(--primary)' }}>
-                <span style={{ color: 'var(--secondary)' }}>guest@nilupul-os</span>:~$ {line.content}
+                <span style={{ color: 'var(--text-muted)' }}>$</span> {line.content}
               </span>
             )}
-            {line.type === 'output' && <span style={{ color: '#fff', opacity: 0.9 }}>{line.content}</span>}
-            {line.type === 'system' && <span style={{ color: 'var(--primary)', opacity: 0.6, fontSize: '0.7rem' }}>[SYSTEM] {line.content}</span>}
+            {line.type === 'output' && <span style={{ color: '#fff', opacity: 0.8 }}>{line.content}</span>}
+            {line.type === 'system' && <span style={{ color: 'var(--primary)', opacity: 0.4, fontSize: '0.7rem' }}>[{line.content}]</span>}
           </div>
         ))}
         <div ref={terminalEndRef} />
         
-        <form onSubmit={handleCommand} style={{ display: 'flex', alignItems: 'center', marginTop: '4px' }}>
-          <span style={{ color: 'var(--secondary)', marginRight: '8px' }}>guest@nilupul-os:~$</span>
+        <form onSubmit={handleCommand} style={{ display: 'flex', alignItems: 'center', marginTop: '6px' }}>
+          <span style={{ color: 'var(--text-muted)', marginRight: '10px' }}>$</span>
           <input 
-            autoFocus
             type="text" 
             value={input}
             onChange={(e) => setInput(e.target.value)}
@@ -169,7 +167,7 @@ const CyberTerminal = () => {
               outline: 'none',
               flex: 1,
               fontFamily: 'var(--font-mono)',
-              fontSize: '0.85rem'
+              fontSize: '0.8rem'
             }}
           />
         </form>
@@ -180,244 +178,286 @@ const CyberTerminal = () => {
 
 const Hero = () => {
   const [showTerminal, setShowTerminal] = useState(false);
+  const containerRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  const midY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const frontY = useTransform(scrollYProgress, [0, 1], ["0%", "80%"]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const textScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
 
   return (
-    <section id="home" className="section" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative', paddingTop: '80px', overflow: 'hidden' }}>
-      
-      {/* Premium Background Glow */}
-      <div style={{ position: 'absolute', top: '20%', left: '10%', width: '40vw', height: '40vw', background: 'radial-gradient(circle, rgba(0,255,157,0.05) 0%, rgba(0,0,0,0) 70%)', filter: 'blur(60px)', zIndex: 0, pointerEvents: 'none' }}></div>
-      <div style={{ position: 'absolute', bottom: '20%', right: '10%', width: '30vw', height: '30vw', background: 'radial-gradient(circle, rgba(0,229,255,0.05) 0%, rgba(0,0,0,0) 70%)', filter: 'blur(60px)', zIndex: 0, pointerEvents: 'none' }}></div>
+    <section 
+      ref={containerRef}
+      id="home" 
+      className="section perspective-container" 
+      style={{ 
+        minHeight: '100vh', 
+        paddingTop: '8rem', 
+        position: 'relative', 
+        overflow: 'hidden',
+        background: '#020606'
+      }}
+    >
+      {/* Layer 1: Cinematic Background */}
+      <motion.div 
+        style={{ 
+          position: 'absolute',
+          inset: '-10%',
+          backgroundImage: `url(${cinematicBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          y: bgY,
+          opacity: 0.4,
+          filter: 'blur(4px)',
+          zIndex: 0
+        }}
+      />
 
-      <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
+      {/* Layer 2: Floating Particle Field */}
+      <motion.div 
+        style={{ 
+          position: 'absolute',
+          inset: 0,
+          y: midY,
+          zIndex: 1,
+          pointerEvents: 'none'
+        }}
+      >
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0 }}
+            animate={{ 
+              opacity: [0.1, 0.3, 0.1],
+              scale: [1, 1.2, 1],
+              x: Math.random() * 100 + '%',
+              y: Math.random() * 100 + '%'
+            }}
+            transition={{ 
+              duration: 10 + Math.random() * 10, 
+              repeat: Infinity, 
+              ease: "linear" 
+            }}
+            style={{ 
+              position: 'absolute',
+              width: Math.random() * 4 + 'px',
+              height: Math.random() * 4 + 'px',
+              background: 'var(--primary)',
+              borderRadius: '50%',
+              boxShadow: '0 0 15px var(--primary)',
+              filter: 'blur(1px)'
+            }}
+          />
+        ))}
+      </motion.div>
+
+      {/* Layer 3: Main Content */}
+      <motion.div 
+        className="container" 
+        style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
+          gap: '4rem', 
+          alignItems: 'center',
+          position: 'relative',
+          zIndex: 10,
+          opacity: textOpacity,
+          scale: textScale
+        }}
+      >
         <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
           style={{ position: 'relative', zIndex: 10 }}
         >
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', background: 'rgba(0, 255, 157, 0.1)', borderRadius: '20px', border: '1px solid rgba(0, 255, 157, 0.2)', marginBottom: '2rem' }}>
-            <TerminalIcon size={16} color="var(--primary)" />
-            <span className="mono-text" style={{ fontSize: '0.9rem', margin: 0 }}>System Node: ONLINE</span>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', padding: '6px 20px', background: 'rgba(255, 255, 255, 0.03)', borderRadius: '100px', border: '1px solid rgba(255, 255, 255, 0.05)', marginBottom: '2.5rem' }}>
+            <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--primary)', boxShadow: '0 0 10px var(--primary)' }} />
+            <span className="mono-text" style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '2px' }}>Available for hire</span>
           </div>
           
-          <div style={{ marginBottom: '1rem' }}>
-            <h1 style={{ lineHeight: '1.1', margin: 0 }} className="glitch" data-text="Nilupul">
-              Nilupul
-            </h1>
-            <h1 style={{ lineHeight: '1.1', margin: 0 }} className="glitch" data-text="Thisaranga">
+          <div style={{ marginBottom: '2rem' }}>
+            <h1 className="floating" style={{ margin: 0, color: '#fff' }}>
+              Nilupul <br />
               Thisaranga
             </h1>
           </div>
           
-          <h2 style={{ color: 'var(--text-muted)', fontSize: 'clamp(1.2rem, 2.5vw, 2rem)', marginBottom: '1.5rem', height: '3rem', fontWeight: 400 }}>
-            I am a <span className="text-gradient" style={{ fontWeight: 600 }}>
-              <Typewriter texts={['Cybersecurity undergraduate.', 'Full Stack Developer.', 'Security Enthusiast.']} delay={100} />
-            </span>
-          </h2>
-
-          <p style={{ fontSize: '1.1rem', maxWidth: '500px', marginBottom: '2.5rem', color: 'var(--text-muted)' }}>
-            A motivated and detail-oriented Cybersecurity undergraduate with a passion for securing modern applications. 
-            Specializing in secure coding and vulnerability assessment.
+          <p style={{ fontSize: '1.4rem', fontFamily: 'var(--font-serif)', fontStyle: 'italic', maxWidth: '550px', marginBottom: '3rem', color: 'var(--text-main)', opacity: 0.9 }}>
+            Designing secure digital ecosystems with precision, elegance, and unyielding protection.
           </p>
           
           {/* Animated Terminal Section */}
           <AnimatePresence>
             {showTerminal && (
               <motion.div 
-                initial={{ opacity: 0, height: 0, marginBottom: 0 }}
-                animate={{ opacity: 1, height: 'auto', marginBottom: '2.5rem' }}
-                exit={{ opacity: 0, height: 0, marginBottom: 0 }}
-                transition={{ duration: 0.4, ease: "easeInOut" }}
-                style={{ overflow: 'hidden' }}
+                initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                style={{ marginBottom: '3rem' }}
               >
                 <CyberTerminal />
               </motion.div>
             )}
           </AnimatePresence>
           
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <a href="#contact" className="btn btn-primary" style={{ padding: '0.8rem 1.5rem', fontSize: '0.9rem' }}>
-              Contact us <ArrowRight size={18} />
+          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
+            <a href="#contact" className="btn" style={{ 
+              padding: '1rem 2.5rem', 
+              fontSize: '0.9rem', 
+              background: 'var(--primary)', 
+              color: 'var(--bg-dark)',
+              borderRadius: '100px',
+              letterSpacing: '1px'
+            }}>
+              Initiate Contact
             </a>
             
             <button 
               onClick={() => setShowTerminal(!showTerminal)}
-              className="btn btn-outline" 
+              className="btn" 
               style={{ 
-                padding: '0.8rem 1.5rem', 
+                padding: '1rem 2rem', 
                 fontSize: '0.9rem',
-                borderColor: showTerminal ? 'var(--primary)' : 'rgba(0,255,157,0.3)',
-                background: showTerminal ? 'rgba(0,255,157,0.1)' : 'transparent',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                background: 'rgba(255, 255, 255, 0.03)',
+                borderRadius: '100px',
+                color: '#fff',
+                backdropFilter: 'blur(10px)',
                 display: 'flex',
                 alignItems: 'center',
-                gap: '8px'
+                gap: '10px'
               }}
             >
-              <TerminalIcon size={18} /> {showTerminal ? 'Close Terminal' : 'System Access'}
+              <TerminalIcon size={18} /> {showTerminal ? 'Terminate' : 'System Access'}
             </button>
 
             <motion.a 
               href="/CV.pdf" 
               download="Nilupul_Thisaranga_CV.pdf"
-              className="btn btn-outline" 
+              className="btn" 
               style={{ 
-                padding: '0.8rem 1.5rem', 
+                padding: '1rem 2rem', 
                 display: 'flex', 
                 alignItems: 'center', 
                 gap: '8px', 
-                border: '1px solid rgba(0,255,157,0.4)', 
+                border: '1px solid rgba(0, 245, 212, 0.2)', 
                 color: 'var(--primary)',
-                background: 'rgba(0,255,157,0.02)',
-                position: 'relative',
-                overflow: 'hidden',
+                background: 'rgba(0, 245, 212, 0.05)',
+                borderRadius: '100px',
                 fontSize: '0.9rem'
               }}
-              animate={{ 
-                boxShadow: ["0 0 0px rgba(0,255,157,0)", "0 0 20px rgba(0,255,157,0.2)", "0 0 0px rgba(0,255,157,0)"],
-                borderColor: ["rgba(0,255,157,0.4)", "rgba(0,255,157,0.8)", "rgba(0,255,157,0.4)"]
-              }}
-              transition={{ 
-                duration: 2.5, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-              }}
-              whileHover={{ scale: 1.05, background: 'rgba(0,255,157,0.1)' }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ background: 'rgba(0, 245, 212, 0.1)' }}
             >
-              <Download size={18} /> CV
+              <Download size={18} /> Credentials
             </motion.a>
           </div>
         </motion.div>
 
         {/* Professional ID Badge Photo Area */}
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', perspective: '1000px' }}
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+          style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
         >
-          <motion.div 
-            animate={{ y: [-5, 5, -5] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="id-card glass-panel"
-            style={{ 
-              width: '100%', 
-              maxWidth: '320px', 
-              padding: '1.5rem',
-              borderRadius: '16px',
-              border: '1px solid rgba(0, 255, 157, 0.3)',
-              background: 'linear-gradient(145deg, rgba(16, 18, 27, 0.8) 0%, rgba(5, 5, 8, 0.9) 100%)',
-              boxShadow: '0 20px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.05)',
-              position: 'relative',
-              overflow: 'hidden'
-            }}
-          >
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '4px', background: 'var(--primary)', boxShadow: '0 0 20px var(--primary)' }} />
-            <div style={{ position: 'absolute', top: '-50%', left: '-50%', width: '200%', height: '200%', background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.05), transparent)', transform: 'rotate(30deg)', pointerEvents: 'none' }} />
-            
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.8rem' }}>
-              <div>
-                <div className="mono-text" style={{ fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '2px' }}>UNIVERSITY CREDENTIAL</div>
-                <div style={{ color: '#fff', fontWeight: 800, fontSize: '1.1rem', letterSpacing: '1px' }}>LEVEL: UNDERGRAD</div>
-              </div>
-              <Shield size={24} color="var(--primary)" />
-            </div>
-
-            <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
+          <div className="glass-panel" style={{ 
+            width: '100%', 
+            maxWidth: '350px', 
+            padding: '2.5rem',
+            background: 'linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)',
+            boxShadow: '0 40px 100px rgba(0,0,0,0.6)',
+            textAlign: 'center'
+          }}>
+            <div style={{ 
+              width: '180px', 
+              height: '180px', 
+              margin: '0 auto 2rem',
+              borderRadius: '50%',
+              border: '2px solid var(--primary)',
+              padding: '8px',
+              position: 'relative'
+            }}>
               <div style={{ 
-                width: '90px', 
-                height: '110px', 
-                background: 'rgba(0,0,0,0.5)',
-                border: '1px solid rgba(0, 255, 157, 0.4)',
-                borderRadius: '8px',
-                position: 'relative',
+                width: '100%', 
+                height: '100%', 
+                borderRadius: '50%', 
                 overflow: 'hidden',
-                flexShrink: 0
+                background: 'rgba(0,0,0,0.5)'
               }}>
                 <img 
                   src={profilePic} 
-                  alt="Nilupul Thisaranga" 
-                  style={{ 
-                    width: '100%', 
-                    height: '100%', 
-                    objectFit: 'cover',
-                    objectPosition: 'center 20%',
-                    opacity: 0.95 
-                  }} 
+                  alt="Nilupul" 
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                 />
-                <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 157, 0.15) 2px, rgba(0, 255, 157, 0.15) 4px)', pointerEvents: 'none', mixBlendMode: 'overlay' }} />
-                <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 15px rgba(0,255,157,0.3)', pointerEvents: 'none' }} />
               </div>
-
-              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '0.4rem' }}>
-                <div>
-                  <div className="mono-text" style={{ fontSize: '0.55rem', color: 'var(--text-muted)' }}>IDENTIFICATION</div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--secondary)', fontFamily: 'var(--font-mono)' }}>#NT-CYBER-UG</div>
-                </div>
-                <div>
-                  <div className="mono-text" style={{ fontSize: '0.55rem', color: 'var(--text-muted)' }}>DESIGNATION</div>
-                  <div style={{ fontSize: '0.75rem', color: '#fff', fontWeight: 600 }}>Cybersecurity Undergraduate</div>
-                </div>
-                <div>
-                  <div className="mono-text" style={{ fontSize: '0.55rem', color: 'var(--text-muted)' }}>STATUS</div>
-                  <div style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', background: 'rgba(0, 255, 157, 0.1)', padding: '2px 6px', borderRadius: '4px' }}>
-                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--primary)', boxShadow: '0 0 5px var(--primary)' }} />
-                    <span style={{ fontSize: '0.6rem', color: 'var(--primary)', fontWeight: 600, letterSpacing: '1px' }}>ACTIVE</span>
-                  </div>
-                </div>
-              </div>
+              <div style={{ position: 'absolute', bottom: '10px', right: '10px', width: '20px', height: '20px', background: 'var(--primary)', borderRadius: '50%', border: '4px solid var(--bg-dark)' }} />
             </div>
-
-            <div style={{ borderTop: '1px dashed rgba(255,255,255,0.1)', paddingTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-              <div>
-                <div className="mono-text" style={{ fontSize: '0.55rem', color: 'var(--text-muted)', marginBottom: '4px' }}>BIOMETRIC HASH</div>
-                <div style={{ display: 'flex', gap: '2px', height: '24px' }}>
-                  {[...Array(20)].map((_, i) => (
-                    <div key={i} style={{ width: '3px', height: `${Math.random() * 100}%`, background: 'var(--primary)', opacity: 0.7 }} />
-                  ))}
-                </div>
-              </div>
-              <div className="mono-text" style={{ fontSize: '0.6rem', color: 'var(--text-muted)' }}>VALID THRU // 2028</div>
+            
+            <h2 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', color: '#fff' }}>Nilupul</h2>
+            <p className="mono-text" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '3px', opacity: 0.6, marginBottom: '2rem' }}>Senior Analyst / Dev</p>
+            
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem' }}>
+              <Shield size={20} color="var(--primary)" opacity={0.5} />
+              <div style={{ width: '1px', height: '20px', background: 'rgba(255,255,255,0.1)' }} />
+              <span className="mono-text" style={{ fontSize: '0.7rem' }}>LVL_99_SEC</span>
             </div>
-          </motion.div>
+          </div>
         </motion.div>
-      </div>
+      </motion.div>
+
+      {/* Layer 4: Foreground Glass Elements */}
+      <motion.div 
+        style={{ 
+          position: 'absolute',
+          top: '20%',
+          right: '-5%',
+          width: '300px',
+          height: '400px',
+          background: 'rgba(255, 255, 255, 0.02)',
+          backdropFilter: 'blur(40px)',
+          borderRadius: '40px',
+          border: '1px solid rgba(255, 255, 255, 0.05)',
+          y: frontY,
+          rotate: 15,
+          zIndex: 20,
+          pointerEvents: 'none'
+        }}
+      />
       
-      <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', zIndex: 20 }}>
-        <motion.a 
-          href="#skills" 
-          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '12px', textDecoration: 'none', cursor: 'none' }}
-          whileHover="hover"
-          initial="rest"
-          animate="rest"
+      <motion.div 
+        style={{ 
+          position: 'absolute',
+          bottom: '10%',
+          left: '-5%',
+          width: '200px',
+          height: '200px',
+          background: 'rgba(0, 245, 212, 0.01)',
+          backdropFilter: 'blur(20px)',
+          borderRadius: '100px',
+          border: '1px solid rgba(0, 245, 212, 0.05)',
+          y: frontY,
+          rotate: -10,
+          zIndex: 20,
+          pointerEvents: 'none'
+        }}
+      />
+
+      <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', zIndex: 30 }}>
+          <motion.div 
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          style={{ width: '24px', height: '40px', border: '2px solid rgba(255,255,255,0.1)', borderRadius: '12px', display: 'flex', justifyContent: 'center', padding: '6px' }}
         >
-          <motion.span 
-            className="mono-text" 
-            variants={{
-              rest: { color: 'var(--text-muted)', letterSpacing: '0.1rem' },
-              hover: { color: 'var(--primary)', letterSpacing: '0.4rem', textShadow: '0 0 10px rgba(0, 255, 157, 0.6)' }
-            }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            style={{ fontSize: '0.7rem', fontWeight: 600 }}
-          >
-            SCROLL
-          </motion.span>
-          
-          <motion.div
-            variants={{
-              rest: { height: '40px', background: 'linear-gradient(to bottom, rgba(0,255,157,0.5), transparent)' },
-              hover: { height: '65px', background: 'var(--primary)', boxShadow: '0 0 15px var(--primary)' }
-            }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            style={{ width: '2px', borderRadius: '2px', position: 'relative', overflow: 'hidden' }}
-          >
-            <motion.div
-              animate={{ y: ['-100%', '200%'] }}
-              transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '50%', background: '#fff', opacity: 0.8 }}
-            />
-          </motion.div>
-        </motion.a>
+          <div style={{ width: '2px', height: '8px', background: 'var(--primary)', borderRadius: '2px' }} />
+        </motion.div>
       </div>
     </section>
   );

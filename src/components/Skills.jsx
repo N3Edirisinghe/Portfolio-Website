@@ -43,34 +43,33 @@ const Skills = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '4rem' }}>
-            <h2 style={{ margin: 0, display: 'flex', alignItems: 'center' }}>
-              <span className="mono-text" style={{ fontSize: '1.5rem', marginRight: '1rem' }}>02.</span>
-              Technical Arsenal
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '5rem' }}>
+            <h2 style={{ margin: 0, color: '#fff' }}>
+              <span style={{ fontSize: '1.5rem', marginRight: '1rem', opacity: 0.5, fontStyle: 'normal' }}>02.</span>
+              Technical <span style={{ fontStyle: 'italic', fontWeight: 500 }}>Arsenal</span>
             </h2>
-            <div style={{ height: '1px', flex: 1, background: 'linear-gradient(90deg, var(--primary) 0%, transparent 100%)', opacity: 0.5 }}></div>
+            <div style={{ height: '1px', flex: 1, background: 'rgba(255, 255, 255, 0.05)' }}></div>
           </div>
 
-          <div className="grid grid-cols-3" style={{ gap: '2rem' }}>
+          <div className="grid grid-cols-3" style={{ gap: '2.5rem' }}>
             {skillCategories.map((category, index) => (
               <motion.div 
                 key={index} 
-                className="glass-panel skill-card"
+                className="glass-panel"
                 style={{ 
-                  position: 'relative', 
-                  zIndex: 10,
-                  padding: '2.5rem 2rem',
+                  padding: '3rem 2rem',
                   display: 'flex',
                   flexDirection: 'column',
-                  overflow: 'hidden'
+                  background: 'rgba(255, 255, 255, 0.01)',
+                  borderRadius: '32px'
                 }}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                whileHover={{ y: -10, boxShadow: '0 20px 40px rgba(0, 255, 157, 0.1)' }}
+                whileHover={{ y: -8, background: 'rgba(255, 255, 255, 0.03)' }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
               >
                 {/* Background glowing orb */}
                 <div style={{
@@ -86,16 +85,16 @@ const Skills = () => {
                   borderRadius: '50%'
                 }} />
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '15px', marginBottom: '2rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '2.5rem' }}>
                   <div style={{ 
                     padding: '12px', 
-                    background: 'rgba(255, 255, 255, 0.03)', 
-                    borderRadius: '12px',
-                    border: '1px solid rgba(255, 255, 255, 0.05)'
+                    background: 'rgba(0, 245, 212, 0.05)', 
+                    borderRadius: '16px',
+                    border: '1px solid rgba(0, 245, 212, 0.1)'
                   }}>
                     {category.icon}
                   </div>
-                  <h3 style={{ color: '#fff', fontSize: '1.4rem', margin: 0, lineHeight: 1.2 }}>
+                  <h3 style={{ color: '#fff', fontSize: '1.1rem', margin: 0 }}>
                     {category.title}
                   </h3>
                 </div>
@@ -105,15 +104,22 @@ const Skills = () => {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', flex: 1 }}
+                  style={{ display: 'flex', flexDirection: 'column', gap: '1rem', flex: 1 }}
                 >
                   {category.skills.map((skill, i) => (
                     <motion.div 
                       key={i} 
                       variants={itemVariants}
                       className="skill-item"
+                      style={{ 
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '12px',
+                        color: 'var(--text-muted)',
+                        fontSize: '0.85rem'
+                      }}
                     >
-                      <Hexagon size={12} color={index === 0 ? 'var(--primary)' : index === 1 ? 'var(--secondary)' : '#00e5ff'} style={{ minWidth: '12px' }} />
+                      <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--primary)', opacity: 0.5 }} />
                       <span>{skill}</span>
                     </motion.div>
                   ))}
@@ -125,35 +131,10 @@ const Skills = () => {
       </div>
 
       <style>{`
-        .skill-card {
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
-          border-left: 1px solid rgba(255, 255, 255, 0.05);
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        
-        .skill-card:hover {
-          border-color: rgba(0, 255, 157, 0.3);
-        }
-
-        .skill-item {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          padding: 10px 15px;
-          background: rgba(255, 255, 255, 0.02);
-          border-radius: 8px;
-          font-family: 'Fira Code', monospace;
-          font-size: 0.85rem;
-          color: var(--text-muted);
-          transition: all 0.3s ease;
-          border: 1px solid transparent;
-        }
-
         .skill-item:hover {
-          background: rgba(255, 255, 255, 0.05);
-          color: #fff;
+          color: var(--primary) !important;
           transform: translateX(5px);
-          border-color: rgba(255, 255, 255, 0.1);
+          transition: all 0.3s ease;
         }
       `}</style>
     </section>

@@ -158,12 +158,12 @@ const ComingSoon = () => (
     transition={{ duration: 0.6 }}
     style={{
       textAlign: 'center',
-      padding: '4rem 2rem',
-      background: 'var(--bg-card)',
-      backdropFilter: 'blur(16px)',
-      WebkitBackdropFilter: 'blur(16px)',
-      border: '1px solid var(--border-color)',
-      borderRadius: '20px',
+      padding: '6rem 2rem',
+      background: 'rgba(255, 255, 255, 0.01)',
+      backdropFilter: 'blur(30px)',
+      WebkitBackdropFilter: 'blur(30px)',
+      border: '1px solid rgba(255, 255, 255, 0.03)',
+      borderRadius: '40px',
       position: 'relative',
       overflow: 'hidden',
     }}
@@ -203,23 +203,23 @@ const ComingSoon = () => (
     </div>
 
     {/* Research interests */}
-    <div style={{ marginBottom: '2.5rem' }}>
-      <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)', letterSpacing: '0.08em', marginBottom: '1rem' }}>ACTIVE RESEARCH AREAS</p>
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem', justifyContent: 'center' }}>
+    <div style={{ marginBottom: '4rem' }}>
+      <p style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.3)', letterSpacing: '3px', textTransform: 'uppercase', marginBottom: '1.5rem', fontWeight: 600 }}>Active Protocols</p>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
         {researchInterests.map((ri, i) => (
           <motion.div
             key={ri.label}
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: i * 0.08 }}
+            transition={{ delay: i * 0.05 }}
             style={{
-              display: 'flex', alignItems: 'center', gap: '6px',
-              background: 'rgba(0,255,157,0.05)', border: '1px solid rgba(0,255,157,0.15)',
-              borderRadius: '20px', padding: '6px 14px',
+              display: 'flex', alignItems: 'center', gap: '8px',
+              background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)',
+              borderRadius: '100px', padding: '10px 20px',
             }}
           >
-            <span style={{ fontSize: '0.9rem' }}>{ri.icon}</span>
-            <span style={{ fontSize: '0.78rem', color: 'var(--text-main)' }}>{ri.label}</span>
+            <span style={{ fontSize: '0.9rem', opacity: 0.8 }}>{ri.icon}</span>
+            <span style={{ fontSize: '0.85rem', color: '#fff', opacity: 0.8 }}>{ri.label}</span>
           </motion.div>
         ))}
       </div>
@@ -267,12 +267,12 @@ const Research = () => {
           transition={{ duration: 0.6 }}
         >
           {/* Section Header */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
-            <h2 style={{ margin: 0 }}>
-              <span className="mono-text" style={{ fontSize: '1.5rem', marginRight: '1rem' }}>06.</span>
-              Research &amp; <span className="text-gradient">Publications</span>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '5rem' }}>
+            <h2 style={{ margin: 0, color: '#fff' }}>
+              <span style={{ fontSize: '1.5rem', marginRight: '1rem', opacity: 0.5 }}>06.</span>
+              Intellectual <span style={{ fontStyle: 'italic', fontWeight: 500 }}>Inquiry</span>
             </h2>
-            <div style={{ height: '1px', flex: 1, background: 'var(--border-color)', maxWidth: '300px' }}></div>
+            <div style={{ height: '1px', flex: 1, background: 'rgba(255, 255, 255, 0.05)' }}></div>
 
             {/* Google Scholar link pill — always visible */}
             <a

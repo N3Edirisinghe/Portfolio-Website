@@ -10,57 +10,44 @@ const About = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
-            <h2 style={{ margin: 0 }}>
-              <span className="mono-text" style={{ fontSize: '1.5rem', marginRight: '1rem' }}>01.</span>
-              About Me
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '5rem' }}>
+            <h2 style={{ margin: 0, color: '#fff' }}>
+              <span style={{ fontSize: '1.5rem', marginRight: '1rem', opacity: 0.5 }}>01.</span>
+              The <span style={{ fontStyle: 'italic', fontWeight: 500 }}>Philosophy</span>
             </h2>
-            <div style={{ height: '1px', flex: 1, background: 'var(--border-color)', maxWidth: '300px' }}></div>
+            <div style={{ height: '1px', flex: 1, background: 'rgba(255, 255, 255, 0.05)' }}></div>
           </div>
 
           <div className="grid grid-cols-2" style={{ alignItems: 'center' }}>
-            <div>
-              <p>
-                I am a motivated Cybersecurity undergraduate at <span className="text-gradient">SLTC Research University</span>. 
-                My journey began with a fascination for how networks operate and quickly evolved into a passion for securing them.
+            <div style={{ paddingRight: '2rem' }}>
+              <p style={{ fontSize: '1.4rem', fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: '#fff', opacity: 0.9, marginBottom: '2.5rem', lineHeight: '1.6' }}>
+                At the intersection of code and security, I build resilient digital landscapes.
               </p>
-              <p>
-                Through academic and personal projects, I have gained hands-on experience in secure coding and web technologies 
-                such as JavaScript, React.js, and Node.js. My coursework has strengthened my foundation in threat modeling, 
-                vulnerability assessment, and incident response.
+              <p style={{ fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '1.5rem', lineHeight: '1.8' }}>
+                I am a Cybersecurity undergraduate at <span style={{ color: 'var(--primary)' }}>SLTC Research University</span>. 
+                My journey began with a fascination for hidden vulnerabilities and evolved into a mission to engineer unyielding protection.
               </p>
-              <p>
-                I thrive on solving real-world problems with innovative, resilient solutions and am seeking opportunities 
-                to grow as a security-minded developer.
+              <p style={{ fontSize: '1rem', color: 'var(--text-muted)', marginBottom: '1.5rem', lineHeight: '1.8' }}>
+                Through academic research and hands-on development, I have refined my ability to harmonize complex architectures with robust security protocols.
               </p>
             </div>
 
-            <div className="glass-panel" style={{ position: 'relative' }}>
-              <div style={{ position: 'absolute', top: '-10px', right: '-10px', width: '50px', height: '50px', borderTop: '2px solid var(--primary)', borderRight: '2px solid var(--primary)' }}></div>
-              <div style={{ position: 'absolute', bottom: '-10px', left: '-10px', width: '50px', height: '50px', borderBottom: '2px solid var(--primary)', borderLeft: '2px solid var(--primary)' }}></div>
-              
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-                <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                  <ShieldCheck color="var(--primary)" size={24} style={{ marginTop: '3px' }} />
+            <div className="glass-panel floating" style={{ padding: '3rem', borderRadius: '32px', background: 'rgba(255,255,255,0.01)' }}>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '2.5rem' }}>
+                <li style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
+                  <ShieldCheck color="var(--primary)" size={28} style={{ opacity: 0.6 }} />
                   <div>
-                    <h3 style={{ fontSize: '1.1rem', marginBottom: '0.3rem', color: '#fff' }}>Security First</h3>
-                    <p style={{ margin: 0, fontSize: '0.9rem' }}>Implementing robust security best practices in every application I build.</p>
+                    <h3 style={{ fontSize: '0.9rem', marginBottom: '0.5rem', color: '#fff', letterSpacing: '2px' }}>Security First</h3>
+                    <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>Implementing robust encryption and threat mitigation in every architectural layer.</p>
                   </div>
                 </li>
-                <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                  <Code color="var(--secondary)" size={24} style={{ marginTop: '3px' }} />
+                <li style={{ display: 'flex', gap: '1.5rem', alignItems: 'flex-start' }}>
+                  <Code color="var(--primary)" size={28} style={{ opacity: 0.6 }} />
                   <div>
-                    <h3 style={{ fontSize: '1.1rem', marginBottom: '0.3rem', color: '#fff' }}>Clean Code</h3>
-                    <p style={{ margin: 0, fontSize: '0.9rem' }}>Writing maintainable, efficient, and scalable code for modern web architectures.</p>
-                  </div>
-                </li>
-                <li style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                  <Target color="var(--accent)" size={24} style={{ marginTop: '3px' }} />
-                  <div>
-                    <h3 style={{ fontSize: '1.1rem', marginBottom: '0.3rem', color: '#fff' }}>Continuous Learning</h3>
-                    <p style={{ margin: 0, fontSize: '0.9rem' }}>Eagerly exploring new tools, emerging threats, and mitigation techniques.</p>
+                    <h3 style={{ fontSize: '0.9rem', marginBottom: '0.5rem', color: '#fff', letterSpacing: '2px' }}>Clean Logic</h3>
+                    <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>Writing elegant, maintainable code that prioritizes performance without compromising integrity.</p>
                   </div>
                 </li>
               </ul>

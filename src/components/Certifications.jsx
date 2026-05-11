@@ -23,11 +23,13 @@ const CertificationCard = ({ cert, index }) => {
       style={{ 
         display: 'flex', 
         flexDirection: 'column', 
-        padding: '1.5rem',
+        padding: '2.5rem',
         position: 'relative',
         overflow: 'hidden',
         height: '100%',
-        borderLeft: `3px solid ${cert.color}`
+        background: 'rgba(255, 255, 255, 0.01)',
+        borderRadius: '32px',
+        border: '1px solid rgba(255, 255, 255, 0.03)'
       }}
       initial={{ opacity: 0, x: -20 }}
       whileInView={{ opacity: 1, x: 0 }}
@@ -64,8 +66,8 @@ const CertificationCard = ({ cert, index }) => {
         <span className="mono-text" style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>{cert.date}</span>
       </div>
 
-      <h3 style={{ fontSize: '1rem', marginBottom: '0.5rem', color: '#fff', lineHeight: '1.4' }}>{cert.title}</h3>
-      <p className="mono-text" style={{ fontSize: '0.75rem', color: cert.color, marginBottom: '1.2rem', fontWeight: 600 }}>{cert.issuer}</p>
+      <h3 style={{ fontSize: '1.1rem', marginBottom: '0.5rem', color: '#fff', lineHeight: '1.4', fontFamily: 'var(--font-sans)', textTransform: 'none', letterSpacing: '0' }}>{cert.title}</h3>
+      <p style={{ fontSize: '0.75rem', color: 'var(--primary)', marginBottom: '1.5rem', fontWeight: 600, letterSpacing: '2px', textTransform: 'uppercase' }}>{cert.issuer}</p>
       
       <div style={{ marginTop: 'auto', paddingTop: '1rem', borderTop: '1px solid rgba(255,255,255,0.05)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         <div>
@@ -89,13 +91,12 @@ const Certifications = () => {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          {/* Section Header */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
-            <h2 style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span className="mono-text" style={{ fontSize: '1.5rem', marginRight: '0.5rem' }}>07.</span>
-              Certifications <Award color="var(--primary)" size={28} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '5rem' }}>
+            <h2 style={{ margin: 0, color: '#fff' }}>
+              <span style={{ fontSize: '1.5rem', marginRight: '1rem', opacity: 0.5 }}>07.</span>
+              Professional <span style={{ fontStyle: 'italic', fontWeight: 500 }}>Certifications</span>
             </h2>
-            <div style={{ height: '1px', flex: 1, background: 'var(--border-color)' }}></div>
+            <div style={{ height: '1px', flex: 1, background: 'rgba(255, 255, 255, 0.05)' }}></div>
           </div>
 
           {/* Certifications Grid */}

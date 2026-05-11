@@ -65,7 +65,7 @@ const NetworkBackground = () => {
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(0, 255, 157, 0.5)';
+        ctx.fillStyle = 'rgba(0, 245, 212, 0.3)';
         ctx.fill();
       }
     }
@@ -88,7 +88,7 @@ const NetworkBackground = () => {
 
           if (distance < connectionDistance) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(0, 255, 157, ${1 - distance / connectionDistance})`;
+            ctx.strokeStyle = `rgba(0, 245, 212, ${(1 - distance / connectionDistance) * 0.2})`;
             ctx.lineWidth = 0.5;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -103,7 +103,7 @@ const NetworkBackground = () => {
           const distance = Math.sqrt(dx * dx + dy * dy);
           if (distance < connectionDistance) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(0, 229, 255, ${1 - distance / connectionDistance})`;
+            ctx.strokeStyle = `rgba(0, 209, 255, ${(1 - distance / connectionDistance) * 0.3})`;
             ctx.lineWidth = 1;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(mouse.x, mouse.y);
@@ -133,7 +133,7 @@ const NetworkBackground = () => {
         height: '100%',
         pointerEvents: 'none',
         zIndex: 0,
-        opacity: 0.4
+        opacity: 0.2
       }} 
     />
   );

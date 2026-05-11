@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Code, Folder, RefreshCw, Users, User, X, Mail } from 'lucide-react';
+import { ExternalLink, Code, Folder, RefreshCw, Users, User, X, Mail, ArrowRight } from 'lucide-react';
 
 const Projects = () => {
   const [githubProjects, setGithubProjects] = useState([]);
@@ -171,15 +171,15 @@ const Projects = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
         >
           {/* Group Projects Section */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
-            <h2 style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span className="mono-text" style={{ fontSize: '1.5rem', marginRight: '0.5rem' }}>03.</span>
-              Group Projects <Users color="var(--primary)" size={28} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '5rem' }}>
+            <h2 style={{ margin: 0, color: '#fff' }}>
+              <span style={{ fontSize: '1.5rem', marginRight: '1rem', opacity: 0.5 }}>03.</span>
+              Collaborative <span style={{ fontStyle: 'italic', fontWeight: 500 }}>Ventures</span>
             </h2>
-            <div style={{ height: '1px', flex: 1, background: 'var(--border-color)' }}></div>
+            <div style={{ height: '1px', flex: 1, background: 'rgba(255, 255, 255, 0.05)' }}></div>
           </div>
 
           <div className="grid grid-cols-3" style={{ marginBottom: '5rem' }}>
@@ -195,12 +195,12 @@ const Projects = () => {
           </div>
 
           {/* Individual Projects Section */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
-            <h2 style={{ margin: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <span className="mono-text" style={{ fontSize: '1.5rem', marginRight: '0.5rem' }}>04.</span>
-              Individual Projects <User color="var(--primary)" size={28} />
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '5rem' }}>
+            <h2 style={{ margin: 0, color: '#fff' }}>
+              <span style={{ fontSize: '1.5rem', marginRight: '1rem', opacity: 0.5 }}>04.</span>
+              Independent <span style={{ fontStyle: 'italic', fontWeight: 500 }}>Systems</span>
             </h2>
-            <div style={{ height: '1px', flex: 1, background: 'var(--border-color)' }}></div>
+            <div style={{ height: '1px', flex: 1, background: 'rgba(255, 255, 255, 0.05)' }}></div>
             {loading && <RefreshCw className="animate-spin" color="var(--primary)" size={24} />}
           </div>
 
@@ -236,75 +236,97 @@ const Projects = () => {
             onClick={() => setSelectedProject(null)}
           >
             <motion.div 
-              className="glass-panel"
-              initial={{ scale: 0.8, y: 50 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.8, y: 50 }}
-              style={{ maxWidth: '800px', width: '100%', position: 'relative', cursor: 'default' }}
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              style={{ 
+                maxWidth: '800px', 
+                width: '100%', 
+                position: 'relative', 
+                cursor: 'default',
+                background: 'rgba(5, 15, 15, 0.8)',
+                backdropFilter: 'blur(30px)',
+                WebkitBackdropFilter: 'blur(30px)',
+                borderRadius: '40px',
+                padding: '4rem',
+                border: '1px solid rgba(255, 255, 255, 0.05)',
+                boxShadow: '0 50px 100px rgba(0,0,0,0.8)'
+              }}
               onClick={(e) => e.stopPropagation()}
             >
               <button 
                 onClick={() => setSelectedProject(null)}
-                style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', background: 'transparent', border: 'none', color: 'var(--text-muted)', cursor: 'none' }}
+                style={{ position: 'absolute', top: '2rem', right: '2rem', background: 'rgba(255,255,255,0.05)', border: 'none', color: '#fff', cursor: 'none', width: '40px', height: '40px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               >
-                <X size={24} />
+                <X size={20} />
               </button>
               
-              <h2 style={{ color: 'var(--primary)', marginBottom: '0.5rem', textTransform: 'capitalize' }}>{selectedProject.title}</h2>
-              <p className="mono-text" style={{ color: 'var(--secondary)', marginBottom: '2rem' }}>{selectedProject.subtitle}</p>
+              <h2 style={{ color: '#fff', marginBottom: '0.5rem', fontSize: '2.5rem' }}>{selectedProject.title}</h2>
+              <p style={{ color: 'var(--primary)', marginBottom: '3rem', fontSize: '0.9rem', letterSpacing: '2px', textTransform: 'uppercase', fontWeight: 600 }}>{selectedProject.subtitle}</p>
               
-              <h4 style={{ marginBottom: '1rem', color: '#fff' }}>About this Project</h4>
-              <p style={{ fontSize: '1.05rem', lineHeight: '1.8', marginBottom: '2rem' }}>{selectedProject.description}</p>
+              <div style={{ marginBottom: '3rem' }}>
+                <h4 style={{ marginBottom: '1rem', color: 'rgba(255,255,255,0.4)', fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Project Narrative</h4>
+                <p style={{ fontSize: '1.2rem', lineHeight: '1.8', color: 'var(--text-main)', opacity: 0.9, fontFamily: 'var(--font-serif)', fontStyle: 'italic' }}>{selectedProject.description}</p>
+              </div>
               
-              <h4 style={{ marginBottom: '1rem', color: '#fff' }}>Technologies Used</h4>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '3rem' }}>
-                {selectedProject.tech && selectedProject.tech.map((tech, i) => (
-                  <span key={i} className="tag" style={{ fontSize: '0.9rem' }}>
-                    {tech}
-                  </span>
-                ))}
+              <div style={{ marginBottom: '3rem' }}>
+                <h4 style={{ marginBottom: '1.5rem', color: 'rgba(255,255,255,0.4)', fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Technology Stack</h4>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+                  {selectedProject.tech && selectedProject.tech.map((tech, i) => (
+                    <span key={i} style={{ 
+                      padding: '8px 20px', 
+                      background: 'rgba(255, 255, 255, 0.03)', 
+                      borderRadius: '100px', 
+                      fontSize: '0.8rem', 
+                      color: 'var(--primary)',
+                      border: '1px solid rgba(0, 245, 212, 0.1)'
+                    }}>
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
 
               {selectedProject.members && !selectedProject.subtitle?.toLowerCase().includes('individual') && (
-                <>
-                  <h4 style={{ marginBottom: '1rem', color: '#fff' }}>Development Team</h4>
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
+                <div style={{ marginBottom: '4rem' }}>
+                  <h4 style={{ marginBottom: '1.5rem', color: 'rgba(255,255,255,0.4)', fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '2px' }}>The Architects</h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: '1.5rem' }}>
                     {selectedProject.members.map((member, i) => (
-                      <div key={i} className="glass-panel" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', background: 'rgba(255,255,255,0.03)' }}>
+                      <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '15px', padding: '15px', background: 'rgba(255,255,255,0.02)', borderRadius: '20px', border: '1px solid rgba(255,255,255,0.03)' }}>
                         <img 
                           src={member.avatar} 
                           alt={member.name} 
-                          style={{ width: '45px', height: '45px', borderRadius: '50%', border: '1px solid var(--border-color)' }} 
+                          style={{ width: '45px', height: '45px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.1)' }} 
                         />
                         <div style={{ overflow: 'hidden' }}>
-                          <h5 style={{ margin: 0, fontSize: '0.95rem', color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{member.name}</h5>
+                          <h5 style={{ margin: 0, fontSize: '1rem', color: '#fff' }}>{member.name}</h5>
                           <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-muted)' }}>{member.role}</p>
-                          <div style={{ display: 'flex', gap: '10px', marginTop: '4px' }}>
-                            <a href={member.github} target="_blank" rel="noreferrer" style={{ fontSize: '0.7rem', color: 'var(--primary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                               GitHub <ExternalLink size={10} />
-                            </a>
-                            {member.gmail && (
-                              <a href={`mailto:${member.gmail}`} style={{ fontSize: '0.7rem', color: 'var(--secondary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                                 Mail <Mail size={10} />
-                              </a>
-                            )}
-                          </div>
                         </div>
                       </div>
                     ))}
                   </div>
-                </>
+                </div>
               )}
               
-              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+              <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
                 {selectedProject.github && selectedProject.github !== "#" && (
-                  <a href={selectedProject.github} target="_blank" rel="noreferrer" className="btn btn-primary">
-                    <ExternalLink size={18} /> View on GitHub
+                  <a href={selectedProject.github} target="_blank" rel="noreferrer" className="btn" style={{ 
+                    padding: '1rem 2.5rem', 
+                    background: 'var(--primary)', 
+                    color: 'var(--bg-dark)',
+                    borderRadius: '100px'
+                  }}>
+                    Source Intel
                   </a>
                 )}
                 {selectedProject.demo && selectedProject.demo !== "#" && (
-                  <a href={selectedProject.demo} target="_blank" rel="noreferrer" className="btn btn-outline">
-                    <ExternalLink size={18} /> Visit Live Project
+                  <a href={selectedProject.demo} target="_blank" rel="noreferrer" className="btn" style={{ 
+                    padding: '1rem 2.5rem', 
+                    border: '1px solid var(--primary)', 
+                    color: 'var(--primary)',
+                    borderRadius: '100px'
+                  }}>
+                    Live Access
                   </a>
                 )}
               </div>
@@ -336,48 +358,59 @@ const ProjectCard = ({ project, index, icon, onClick }) => {
   return (
     <motion.div 
       className="glass-panel"
-      style={{ display: 'flex', flexDirection: 'column', height: '100%', position: 'relative', zIndex: 10, cursor: 'none' }}
+      style={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        height: '100%', 
+        position: 'relative', 
+        zIndex: 10, 
+        cursor: 'none',
+        padding: '3rem 2.5rem',
+        borderRadius: '32px',
+        background: 'rgba(255, 255, 255, 0.01)'
+      }}
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      whileHover={{ y: -10 }}
+      whileHover={{ y: -10, background: 'rgba(255, 255, 255, 0.02)' }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: (index % 3) * 0.1 }}
+      transition={{ duration: 0.6, delay: (index % 3) * 0.1 }}
       onClick={onClick}
     >
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
-        {icon}
-        <div style={{ display: 'flex', gap: '10px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }}>
+        <div style={{ color: 'var(--primary)', opacity: 0.4 }}>{icon}</div>
+        <div style={{ display: 'flex', gap: '15px' }}>
           {project.github && project.github !== "#" && (
-            <a href={project.github} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} style={{ color: 'var(--text-muted)', transition: 'color 0.3s' }} onMouseOver={e => e.currentTarget.style.color = 'var(--primary)'} onMouseOut={e => e.currentTarget.style.color = 'var(--text-muted)'}>
-              <GithubIcon size={20} />
+            <a href={project.github} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} style={{ color: 'var(--text-muted)', transition: 'all 0.3s' }}>
+              <GithubIcon size={18} />
             </a>
           )}
           {project.demo && project.demo !== "#" && (
-            <a href={project.demo} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} style={{ color: 'var(--text-muted)', transition: 'color 0.3s' }} onMouseOver={e => e.currentTarget.style.color = 'var(--primary)'} onMouseOut={e => e.currentTarget.style.color = 'var(--text-muted)'}>
-              <ExternalLink size={20} />
+            <a href={project.demo} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()} style={{ color: 'var(--text-muted)', transition: 'all 0.3s' }}>
+              <ExternalLink size={18} />
             </a>
           )}
         </div>
       </div>
       
-      <h3 style={{ fontSize: '1.3rem', marginBottom: '0.5rem', color: 'var(--text-main)', textTransform: 'capitalize' }}>{project.title}</h3>
-      <p className="mono-text" style={{ fontSize: '0.8rem', marginBottom: '1rem', color: 'var(--secondary)' }}>
-        {project.subtitle} {project.isGithub && <span style={{ fontSize: '0.7rem', opacity: 0.7 }}>(Auto-updated)</span>}
+      <h3 style={{ fontSize: '1.4rem', marginBottom: '0.8rem', color: '#fff', textTransform: 'none' }}>{project.title}</h3>
+      <p style={{ fontSize: '0.75rem', marginBottom: '1.5rem', color: 'var(--primary)', letterSpacing: '1px', textTransform: 'uppercase', fontWeight: 600 }}>
+        {project.subtitle}
       </p>
-      <p style={{ fontSize: '0.9rem', flex: 1, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 4, WebkitBoxOrient: 'vertical' }}>
+      
+      <p style={{ fontSize: '0.95rem', flex: 1, color: 'var(--text-muted)', lineHeight: '1.7', marginBottom: '2rem' }}>
         {project.description}
       </p>
       
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginTop: '1.5rem' }}>
-        {project.tech && project.tech.map((tech, i) => (
-          <span key={i} className="mono-text" style={{ fontSize: '0.75rem', color: 'var(--text-muted)', background: 'rgba(255,255,255,0.05)', padding: '4px 8px', borderRadius: '10px' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '2rem' }}>
+        {project.tech && project.tech.slice(0, 3).map((tech, i) => (
+          <span key={i} style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '1px' }}>
             {tech}
           </span>
         ))}
       </div>
       
-      <div style={{ marginTop: '1.5rem', fontSize: '0.85rem', color: 'var(--primary)', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '5px' }}>
-        Click to view details <ExternalLink size={14} />
+      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.85rem', color: 'var(--primary)', fontWeight: 500 }}>
+        Details <ArrowRight size={14} />
       </div>
     </motion.div>
   );

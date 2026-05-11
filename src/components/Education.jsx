@@ -168,19 +168,19 @@ const Education = () => {
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
         >
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
-            <h2 style={{ margin: 0 }}>
-              <span className="mono-text" style={{ fontSize: '1.5rem', marginRight: '1rem' }}>07.</span>
-              Education &amp; Activity
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '5rem' }}>
+            <h2 style={{ margin: 0, color: '#fff' }}>
+              <span style={{ fontSize: '1.5rem', marginRight: '1rem', opacity: 0.5 }}>07.</span>
+              Academic <span style={{ fontStyle: 'italic', fontWeight: 500 }}>Foundation</span>
             </h2>
-            <div style={{ height: '1px', flex: 1, background: 'var(--border-color)', maxWidth: '300px' }}></div>
+            <div style={{ height: '1px', flex: 1, background: 'rgba(255, 255, 255, 0.05)' }}></div>
           </div>
 
           <div className="grid grid-cols-2">
             {/* Academic Background */}
             <div>
-              <h3 style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '2rem' }}>
-                <GraduationCap color="var(--primary)" /> Academic Background
+              <h3 style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '3rem', color: '#fff', fontSize: '1.1rem' }}>
+                <GraduationCap color="var(--primary)" size={20} /> Academic Lineage
               </h3>
 
               <div style={{ borderLeft: '2px solid var(--border-color)', paddingLeft: '2rem', position: 'relative' }}>
@@ -223,32 +223,38 @@ const Education = () => {
 
             {/* Certifications & Events */}
             <div>
-              <h3 style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '2rem' }}>
-                <Award color="var(--secondary)" /> Certifications &amp; Events
+              <h3 style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '3rem', color: '#fff', fontSize: '1.1rem' }}>
+                <Award color="var(--primary)" size={20} /> Honors & Milestones
               </h3>
 
-              <div className="glass-panel" style={{ marginBottom: '1.5rem', padding: '1.5rem' }}>
-                <h4 style={{ fontSize: '1.1rem', marginBottom: '1rem', color: 'var(--text-main)' }}>Courses &amp; Certifications</h4>
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+              <div className="glass-panel" style={{ marginBottom: '1.5rem', padding: '2.5rem', background: 'rgba(255,255,255,0.01)', borderRadius: '32px' }}>
+                <h4 style={{ fontSize: '1rem', marginBottom: '1.5rem', color: '#fff' }}>Strategic Certifications</h4>
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   {[
                     'Introduction to Cybersecurity - (Cisco Networking Academy)',
                     'Introduction to Cybersecurity Awareness - (Hp Life)',
                     'Data Science & Analytics - (Hp Life)',
                     'Fundamentals of Digital Marketing - (Google Digital Garage)',
                   ].map(c => (
-                    <li key={c} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                      <BookOpen size={16} color="var(--primary)" style={{ marginTop: '4px', flexShrink: 0 }} />
-                      <span style={{ fontSize: '0.9rem' }}>{c}</span>
+                    <li key={c} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                      <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--primary)', marginTop: '8px', opacity: 0.5 }} />
+                      <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>{c}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="glass-panel" style={{ padding: '1.5rem' }}>
-                <h4 style={{ fontSize: '1.1rem', marginBottom: '1rem', color: 'var(--text-main)' }}>Event Participation</h4>
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                  <li style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}><span style={{ color: 'var(--secondary)' }}>▹</span><span style={{ fontSize: '0.9rem' }}>Participated for Cybercon Workshop (2024) at SLTC premises</span></li>
-                  <li style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}><span style={{ color: 'var(--secondary)' }}>▹</span><span style={{ fontSize: '0.9rem' }}>Participated for CodeMania 5.0 (2025) at SLTC premises</span></li>
+              <div className="glass-panel" style={{ padding: '2.5rem', background: 'rgba(255,255,255,0.01)', borderRadius: '32px' }}>
+                <h4 style={{ fontSize: '1rem', marginBottom: '1.5rem', color: '#fff' }}>Engagement Matrix</h4>
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  <li style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--primary)', marginTop: '8px', opacity: 0.5 }} />
+                    <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Cybercon Workshop (2024) - Technical Deep Dive</span>
+                  </li>
+                  <li style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                    <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--primary)', marginTop: '8px', opacity: 0.5 }} />
+                    <span style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>CodeMania 5.0 (2025) - Competitive Engineering</span>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -322,59 +328,52 @@ const Education = () => {
                     initial={{ opacity: 0, scale: 0.85 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true, margin: '-50px' }}
-                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                    whileHover={{ y: -4, boxShadow: `0 12px 32px -8px ${badge.color}55` }}
+                    transition={{ duration: 0.6, delay: i * 0.1 }}
+                    whileHover={{ y: -8, background: 'rgba(255, 255, 255, 0.02)' }}
                     style={{
-                      display: 'flex', alignItems: 'center', gap: '1.2rem',
-                      background: 'var(--bg-card)',
+                      display: 'flex', alignItems: 'center', gap: '1.5rem',
+                      background: 'rgba(255, 255, 255, 0.01)',
                       backdropFilter: 'blur(16px)',
                       WebkitBackdropFilter: 'blur(16px)',
-                      border: `1px solid ${badge.color}33`,
-                      borderRadius: '16px',
-                      padding: '1.2rem 1.6rem',
+                      border: `1px solid rgba(255, 255, 255, 0.03)`,
+                      borderRadius: '32px',
+                      padding: '1.5rem 2rem',
                       textDecoration: 'none',
                       flex: '1 1 260px',
                       maxWidth: '420px',
                       cursor: 'none',
                       position: 'relative',
                       overflow: 'hidden',
-                      transition: 'border-color 0.3s',
+                      transition: 'all 0.3s',
                     }}
                   >
-                    {/* top accent line */}
-                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: `linear-gradient(90deg, transparent, ${badge.color}, transparent)`, opacity: 0.7 }} />
-
                     {/* badge image */}
                     <img
                       src={badge.image}
                       alt={badge.name}
-                      style={{ width: '72px', height: '72px', objectFit: 'contain', flexShrink: 0, filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.4))' }}
+                      style={{ width: '64px', height: '64px', objectFit: 'contain', flexShrink: 0, filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.4))' }}
                       onError={e => { e.target.style.display = 'none'; }}
                     />
 
                     {/* info */}
                     <div>
-                      <p style={{ fontSize: '0.7rem', fontFamily: 'var(--font-mono)', color: badge.color, marginBottom: '0.3rem', letterSpacing: '0.05em' }}>
+                      <p style={{ fontSize: '0.65rem', color: 'var(--primary)', marginBottom: '0.4rem', letterSpacing: '2px', fontWeight: 600 }}>
                         {badge.issuer.toUpperCase()}
                       </p>
-                      <h4 style={{ fontSize: '0.95rem', color: 'var(--text-main)', marginBottom: '0.4rem', lineHeight: 1.35 }}>
+                      <h4 style={{ fontSize: '0.9rem', color: '#fff', marginBottom: '0.4rem', lineHeight: 1.4 }}>
                         {badge.name}
                       </h4>
-                      <p style={{ fontSize: '0.72rem', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', lineHeight: 1.8 }}>
-                        {badge.issued ? <span style={{ display: 'block' }}>Issued: {badge.issued}</span> : null}
-                        {badge.expires ? <span style={{ display: 'block' }}>Expires: {badge.expires}</span> : null}
-                      </p>
                     </div>
 
                     {/* verified chip */}
                     <div style={{
-                      position: 'absolute', top: '0.8rem', right: '0.8rem',
+                      position: 'absolute', top: '1.5rem', right: '1.5rem',
                       display: 'flex', alignItems: 'center', gap: '4px',
-                      background: 'rgba(0,255,157,0.12)', border: '1px solid rgba(0,255,157,0.4)',
-                      borderRadius: '20px', padding: '2px 8px',
+                      background: 'rgba(0,245,212,0.05)', border: '1px solid rgba(0,245,212,0.1)',
+                      borderRadius: '20px', padding: '3px 10px',
                     }}>
-                      <ShieldCheck size={10} color="#00ff9d" />
-                      <span style={{ fontSize: '0.62rem', color: '#00ff9d', fontFamily: 'var(--font-mono)', fontWeight: 600 }}>VERIFIED</span>
+                      <ShieldCheck size={10} color="var(--primary)" />
+                      <span style={{ fontSize: '0.6rem', color: 'var(--primary)', letterSpacing: '1px', fontWeight: 600 }}>VERIFIED</span>
                     </div>
                   </motion.a>
                 ))}
