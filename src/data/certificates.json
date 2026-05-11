@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Google Cloud Fundamentals: Core Infrastructure",
+    "issuer": "Google Cloud Security",
+    "date": "May 2026",
+    "id": "24064909",
+    "color": "#4285F4",
+    "icon": "Cloud",
+    "image": "https://www.google.com/s2/favicons?domain=cloud.google.com&sz=128",
+    "link": "https://www.skills.google/public_profiles/b4437d1b-cc47-444c-a443-2191bbdfda04/badges/24064909"
+  },
+  {
+    "title": "Introduction to Network Analysis",
+    "issuer": "Security Blue Team",
+    "date": "May 2026",
+    "id": "518987213",
+    "color": "#00d1ff",
+    "icon": "Activity",
+    "image": "https://www.google.com/s2/favicons?domain=securityblueteam.com&sz=128",
+    "link": "https://drive.google.com/file/d/1l3ELM_VbwQrcynBk1VkTr_tL-YhWa-M8/view"
+  },
+  {
+    "title": "Introduction to Digital Forensics",
+    "issuer": "Security Blue Team",
+    "date": "May 2026",
+    "id": "Verified",
+    "color": "#00d1ff",
+    "icon": "Search",
+    "image": "https://www.google.com/s2/favicons?domain=securityblueteam.com&sz=128",
+    "link": "https://drive.google.com/file/d/12q7IInyS1jSVtzbls5YjS4fLQwubSA4L/view?usp=sharing"
+  },
+  {
+    "title": "Security+: Security Operations",
+    "issuer": "Cybrary",
+    "date": "Nov 2024",
+    "id": "CC-ab35dbfb-0fcb-4b87-99fd-d2d15ff219de",
+    "color": "#ff0055",
+    "icon": "ShieldAlert",
+    "image": "https://www.google.com/s2/favicons?domain=cybrary.it&sz=128",
+    "link": "https://app.cybrary.it/courses/api/certificate/CC-ab35dbfb-0fcb-4b87-99fd-d2d15ff219de/view"
+  },
+  {
+    "title": "Introduction to the Threat Landscape 3.0",
+    "issuer": "Fortinet Training Institute",
+    "date": "May 2026",
+    "id": "1129218806EE",
+    "color": "#ee3124",
+    "icon": "ShieldCheck",
+    "image": "https://www.google.com/s2/favicons?domain=fortinet.com&sz=128",
+    "link": "https://training.fortinet.com/pluginfile.php/1/tool_certificate/issues/1778405132/1129218806EE.pdf"
+  },
+  {
+    "title": "Introduction to Cybersecurity",
+    "issuer": "Cisco Networking Academy",
+    "date": "Nov 2024",
+    "id": "Verified",
+    "color": "#00b4d8",
+    "icon": "Lock",
+    "image": "https://www.google.com/s2/favicons?domain=cisco.com&sz=128",
+    "link": "https://www.credly.com/badges/01a4a519-2ee8-40d0-aa73-9f764b78b910/public_url"
+  },
+  {
+    "title": "Data Science & Analytics",
+    "issuer": "HP LIFE",
+    "date": "Oct 2024",
+    "id": "f6610d31-38db-4a84-8202-5ee3af4ce85b",
+    "color": "#0096d6",
+    "icon": "BarChart",
+    "image": "https://www.google.com/s2/favicons?domain=hp.com&sz=128",
+    "link": "https://www.life-global.org/certificate/f6610d31-38db-4a84-8202-5ee3af4ce85b"
+  },
+  {
+    "title": "Introduction to Cybersecurity Awareness",
+    "issuer": "HP LIFE",
+    "date": "Oct 2024",
+    "id": "17a5b7e1-a6b0-4180-9d83-ece712ae440c",
+    "color": "#0096d6",
+    "icon": "Eye",
+    "image": "https://www.google.com/s2/favicons?domain=hp.com&sz=128",
+    "link": "https://www.life-global.org/certificate/17a5b7e1-a6b0-4180-9d83-ece712ae440c"
+  },
+  {
+    "title": "Fundamentals of digital marketing",
+    "issuer": "Google Digital Garage",
+    "date": "Aug 2022",
+    "id": "BYN GAH 5AV",
+    "color": "#FBBC05",
+    "icon": "Globe",
+    "image": "https://www.google.com/s2/favicons?domain=google.com&sz=128",
+    "link": "https://drive.google.com/file/d/1Y_lcL_-WOWTLNJxvsZwoUqk_hgeYYz7m/view?usp=sharing"
+  }
+]

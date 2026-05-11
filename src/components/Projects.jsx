@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ExternalLink, Code, Folder, RefreshCw, Users, User, X } from 'lucide-react';
+import { ExternalLink, Code, Folder, RefreshCw, Users, User, X, Mail } from 'lucide-react';
 
 const Projects = () => {
   const [githubProjects, setGithubProjects] = useState([]);
@@ -14,7 +14,11 @@ const Projects = () => {
       description: "A full-stack application built to track user moods with secure data handling. Features a responsive UI and efficient frontend & backend integration. This project involved extensive user research and implementing secure authentication flows to protect sensitive user data.",
       tech: ["Kotlin", "Next.js", "Node.js", "MongoDB"],
       github: "https://github.com/N3Edirisinghe/Neuro-Cloud-Mood-Tracking-Application",
-      demo: "https://neurocloud.netlify.app"
+      demo: "https://neurocloud.netlify.app",
+      members: [
+        { name: "Nilupul Thisaranga", role: "UI/UX & Core", github: "https://github.com/N3Edirisinghe", avatar: "https://avatars.githubusercontent.com/u/263918354?v=4", gmail: "10nilupulthisaranga@gmail.com" },
+        { name: "Chanika Anuradhi", role: "UI/UX & Frontend", github: "https://github.com/Anuradhi-Gunawardhana", avatar: "https://avatars.githubusercontent.com/u/212206235?v=4", gmail: "chanikaanuradhi@gmail.com" }
+      ]
     },
     {
       title: "Neuronix",
@@ -22,7 +26,11 @@ const Projects = () => {
       description: "Designed UI/UX for a sign language detection and learning platform. Focused on accessibility, clean layout, and ease of navigation for diverse users. The interface was rigorously tested with target demographics to ensure maximum usability.",
       tech: ["Figma", "UI/UX Design"],
       github: "https://github.com/N3Edirisinghe",
-      demo: "https://www.figma.com/design/6qrctqUdIPNty42dLKB73f/Neuronix?node-id=0-1&t=VnmTWjtZzqG6bNEo-1"
+      demo: "https://www.figma.com/design/6qrctqUdIPNty42dLKB73f/Neuronix?node-id=0-1&t=VnmTWjtZzqG6bNEo-1",
+      members: [
+        { name: "Nilupul Thisaranga", role: "UI/UX & Core", github: "https://github.com/N3Edirisinghe", avatar: "https://avatars.githubusercontent.com/u/263918354?v=4", gmail: "10nilupulthisaranga@gmail.com" },
+        { name: "Team Neuronix", role: "Collaborative Effort", github: "https://github.com/N3Edirisinghe", avatar: "https://avatars.githubusercontent.com/u/263918354?v=4", gmail: "10nilupulthisaranga@gmail.com" }
+      ]
     },
     {
       title: "Findit",
@@ -30,7 +38,11 @@ const Projects = () => {
       description: "Built a secure lost and found web app using React.js, Node.js, and MySQL. Implemented user authentication and robust data handling. The system matches reported lost items with found items using an optimized database schema.",
       tech: ["React.js", "Node.js", "MySQL"],
       github: "https://github.com/N3Edirisinghe",
-      demo: "#"
+      demo: "#",
+      members: [
+        { name: "Nilupul Thisaranga", role: "UI/UX & Core", github: "https://github.com/N3Edirisinghe", avatar: "https://avatars.githubusercontent.com/u/263918354?v=4", gmail: "10nilupulthisaranga@gmail.com" },
+        { name: "Team Findit", role: "Collaborative Effort", github: "https://github.com/N3Edirisinghe", avatar: "https://avatars.githubusercontent.com/u/263918354?v=4", gmail: "10nilupulthisaranga@gmail.com" }
+      ]
     },
     {
       title: "Ovumate",
@@ -38,7 +50,11 @@ const Projects = () => {
       description: "A cycle tracking application designed with user privacy and accurate predictions in mind. Features a highly intuitive interface and secure data management. Health metrics are encrypted and stored locally whenever possible to ensure maximum security.",
       tech: ["React Native", "Node.js", "MongoDB"],
       github: "https://github.com/N3Edirisinghe/Ovumate-Cycle-Tracking-App-",
-      demo: "https://ovumate.netlify.app"
+      demo: "https://ovumate.netlify.app",
+      members: [
+        { name: "Nilupul Thisaranga", role: "UI/UX & Core", github: "https://github.com/N3Edirisinghe", avatar: "https://avatars.githubusercontent.com/u/263918354?v=4", gmail: "10nilupulthisaranga@gmail.com" },
+        { name: "Chanika Anuradhi", role: "Frontend Developer", github: "https://github.com/Anuradhi-Gunawardhana", avatar: "https://avatars.githubusercontent.com/u/212206235?v=4", gmail: "chanikaanuradhi@gmail.com" }
+      ]
     },
     {
       title: "Lanka Smartmart",
@@ -46,7 +62,12 @@ const Projects = () => {
       description: "A comprehensive e-commerce platform built for the Sri Lankan market. Implemented secure payment gateways, inventory management, and a user-friendly shopping experience. Includes vendor dashboards and automated email receipts.",
       tech: ["React.js", "Node.js", "Express", "MongoDB"],
       github: "https://github.com/N3Edirisinghe/Lanka_Smart_Mart",
-      demo: "#"
+      demo: "#",
+      members: [
+        { name: "Nilupul Thisaranga", role: "UI/UX & Core", github: "https://github.com/N3Edirisinghe", avatar: "https://avatars.githubusercontent.com/u/263918354?v=4", gmail: "10nilupulthisaranga@gmail.com" },
+        { name: "Binara Hansaka", role: "QA & Features", github: "https://github.com/binarahansaka", avatar: "https://avatars.githubusercontent.com/u/205523367?v=4", gmail: "binarahansaka@gmail.com" },
+        { name: "Thrithwaka", role: "Core Features", github: "https://github.com/Thrithwaka", avatar: "https://avatars.githubusercontent.com/u/156334953?v=4", gmail: "thrithwaka@gmail.com" }
+      ]
     },
     {
       title: "Malsimx",
@@ -54,7 +75,11 @@ const Projects = () => {
       description: "A collaborative digital solution built to address specific user needs with a focus on scalable architecture and secure implementation. We designed a microservices architecture to handle high traffic and ensure platform stability.",
       tech: ["React.js", "Node.js", "MongoDB"],
       github: "https://github.com/N3Edirisinghe/MalSimX",
-      demo: "#"
+      demo: "#",
+      members: [
+        { name: "Nilupul Thisaranga", role: "UI/UX & Core", github: "https://github.com/N3Edirisinghe", avatar: "https://avatars.githubusercontent.com/u/263918354?v=4", gmail: "10nilupulthisaranga@gmail.com" },
+        { name: "Siluna Dangalla", role: "Systems Developer", github: "https://github.com/GitGuru29", avatar: "https://avatars.githubusercontent.com/u/153946603?v=4", gmail: "silunadangalla@gmail.com" }
+      ]
     },
     {
       title: "AetherNet",
@@ -62,7 +87,10 @@ const Projects = () => {
       description: "A high-performance networking engine being scaled to support 10Gbps+ throughput. Currently implementing advanced optimizations including kernel-bypass (AF_XDP), SIMD-accelerated packet inspection, and lock-free multi-threading for enterprise-grade scalability.",
       tech: ["C++", "AF_XDP", "Networking", "SIMD"],
       github: "https://github.com/N3Edirisinghe",
-      demo: "#"
+      demo: "#",
+      members: [
+        { name: "Nilupul Thisaranga", role: "UI/UX & Core", github: "https://github.com/N3Edirisinghe", avatar: "https://avatars.githubusercontent.com/u/263918354?v=4", gmail: "10nilupulthisaranga@gmail.com" }
+      ]
     }
   ];
 
@@ -74,7 +102,10 @@ const Projects = () => {
       description: "A secure, digital voting platform designed for university elections. Implemented robust authentication and a streamlined voting interface to ensure election integrity and user accessibility.",
       tech: ["React.js", "Node.js", "MongoDB"],
       github: "https://github.com/N3Edirisinghe/UniVote",
-      demo: "https://sltc-voting.vercel.app/"
+      demo: "https://sltc-voting.vercel.app/",
+      members: [
+        { name: "Nilupul Thisaranga", role: "UI/UX & Core", github: "https://github.com/N3Edirisinghe", avatar: "https://avatars.githubusercontent.com/u/263918354?v=4", gmail: "10nilupulthisaranga@gmail.com" }
+      ]
     }
   ];
 
@@ -96,7 +127,10 @@ const Projects = () => {
               tech: repo.topics && repo.topics.length > 0 ? repo.topics : (repo.language ? [repo.language] : []),
               github: repo.html_url,
               demo: repo.homepage || "#",
-              isGithub: true
+              isGithub: true,
+              members: [
+                { name: "Nilupul Thisaranga", role: "UI/UX & Core", github: "https://github.com/N3Edirisinghe", avatar: "https://avatars.githubusercontent.com/u/263918354?v=4", gmail: "10nilupulthisaranga@gmail.com" }
+              ]
             }))
             .filter(repo => {
               const repoTitle = repo.title.toLowerCase().replace(/\s+/g, '');
@@ -230,6 +264,37 @@ const Projects = () => {
                   </span>
                 ))}
               </div>
+
+              {selectedProject.members && !selectedProject.subtitle?.toLowerCase().includes('individual') && (
+                <>
+                  <h4 style={{ marginBottom: '1rem', color: '#fff' }}>Development Team</h4>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
+                    {selectedProject.members.map((member, i) => (
+                      <div key={i} className="glass-panel" style={{ display: 'flex', alignItems: 'center', gap: '12px', padding: '12px', background: 'rgba(255,255,255,0.03)' }}>
+                        <img 
+                          src={member.avatar} 
+                          alt={member.name} 
+                          style={{ width: '45px', height: '45px', borderRadius: '50%', border: '1px solid var(--border-color)' }} 
+                        />
+                        <div style={{ overflow: 'hidden' }}>
+                          <h5 style={{ margin: 0, fontSize: '0.95rem', color: '#fff', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{member.name}</h5>
+                          <p style={{ margin: 0, fontSize: '0.75rem', color: 'var(--text-muted)' }}>{member.role}</p>
+                          <div style={{ display: 'flex', gap: '10px', marginTop: '4px' }}>
+                            <a href={member.github} target="_blank" rel="noreferrer" style={{ fontSize: '0.7rem', color: 'var(--primary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                               GitHub <ExternalLink size={10} />
+                            </a>
+                            {member.gmail && (
+                              <a href={`mailto:${member.gmail}`} style={{ fontSize: '0.7rem', color: 'var(--secondary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                                 Mail <Mail size={10} />
+                              </a>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
               
               <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
                 {selectedProject.github && selectedProject.github !== "#" && (

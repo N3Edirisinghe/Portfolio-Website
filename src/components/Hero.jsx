@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Terminal, ArrowRight, Shield, Download } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Terminal as TerminalIcon, ArrowRight, Shield, Download, X, Maximize2, ChevronRight } from 'lucide-react';
 import profilePic from '../assets/Profile Pic.png';
 
 const Typewriter = ({ texts, delay = 100 }) => {
@@ -44,7 +44,143 @@ const Typewriter = ({ texts, delay = 100 }) => {
   );
 };
 
+const CyberTerminal = () => {
+  const [history, setHistory] = useState([
+    { type: 'system', content: 'NILUPUL_OS v2.0.4 - INITIALIZING...' },
+    { type: 'system', content: 'SECURE_SHELL ESTABLISHED' },
+    { type: 'output', content: 'Welcome, Guest. Type "help" for available commands.' }
+  ]);
+  const [input, setInput] = useState('');
+  const terminalEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [history]);
+
+  const handleCommand = (e) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+
+    const cmd = input.toLowerCase().trim();
+    let response = '';
+
+    const newHistory = [...history, { type: 'command', content: input }];
+
+    switch (cmd) {
+      case 'help':
+        response = 'Available commands: whoami, ls, skills, contact, clear, date';
+        break;
+      case 'whoami':
+        response = 'Nilupul Thisaranga Edirisinghe - Cybersecurity Undergraduate. Specializing in secure architectures and full-stack development.';
+        break;
+      case 'ls':
+        response = 'PROJECTS: SLTC-Voting, Lanka Smartmart, Portfolio-V2, Network-Scanner...';
+        break;
+      case 'skills':
+        response = 'CORE: React, Node.js, Python, Java | SECURITY: Penetration Testing, Log Analysis, Secure Coding';
+        break;
+      case 'date':
+        response = new Date().toLocaleString();
+        break;
+      case 'clear':
+        setHistory([]);
+        setInput('');
+        return;
+      case 'hello':
+      case 'hi':
+        response = 'System: Access granted. How can I help you today?';
+        break;
+      default:
+        response = `Command not found: ${cmd}. Type "help" for a list of commands.`;
+    }
+
+    setHistory([...newHistory, { type: 'output', content: response }]);
+    setInput('');
+  };
+
+  return (
+    <div className="glass-panel" style={{ 
+      width: '100%', 
+      maxWidth: '500px', 
+      height: '300px', 
+      background: 'rgba(5, 5, 8, 0.95)',
+      border: '1px solid rgba(0, 255, 157, 0.2)',
+      borderRadius: '8px',
+      overflow: 'hidden',
+      display: 'flex',
+      flexDirection: 'column',
+      boxShadow: '0 10px 30px rgba(0,0,0,0.5)'
+    }}>
+      {/* Terminal Header */}
+      <div style={{ 
+        padding: '8px 12px', 
+        background: 'rgba(0, 255, 157, 0.05)', 
+        borderBottom: '1px solid rgba(0, 255, 157, 0.1)',
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center'
+      }}>
+        <div style={{ display: 'flex', gap: '6px' }}>
+          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff5f56' }} />
+          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ffbd2e' }} />
+          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#27c93f' }} />
+        </div>
+        <span className="mono-text" style={{ fontSize: '0.65rem', color: 'var(--text-muted)' }}>bash — nilupul-thisaranga</span>
+        <Maximize2 size={12} color="var(--text-muted)" />
+      </div>
+
+      {/* Terminal Content */}
+      <div style={{ 
+        flex: 1, 
+        padding: '12px', 
+        overflowY: 'auto', 
+        fontFamily: 'var(--font-mono)',
+        fontSize: '0.85rem',
+        scrollbarWidth: 'thin'
+      }}>
+        {history.map((line, i) => (
+          <div key={i} style={{ marginBottom: '4px', lineHeight: '1.4' }}>
+            {line.type === 'command' && (
+              <span style={{ color: 'var(--primary)' }}>
+                <span style={{ color: 'var(--secondary)' }}>guest@nilupul-os</span>:~$ {line.content}
+              </span>
+            )}
+            {line.type === 'output' && <span style={{ color: '#fff', opacity: 0.9 }}>{line.content}</span>}
+            {line.type === 'system' && <span style={{ color: 'var(--primary)', opacity: 0.6, fontSize: '0.7rem' }}>[SYSTEM] {line.content}</span>}
+          </div>
+        ))}
+        <div ref={terminalEndRef} />
+        
+        <form onSubmit={handleCommand} style={{ display: 'flex', alignItems: 'center', marginTop: '4px' }}>
+          <span style={{ color: 'var(--secondary)', marginRight: '8px' }}>guest@nilupul-os:~$</span>
+          <input 
+            autoFocus
+            type="text" 
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            style={{ 
+              background: 'transparent', 
+              border: 'none', 
+              color: '#fff', 
+              outline: 'none',
+              flex: 1,
+              fontFamily: 'var(--font-mono)',
+              fontSize: '0.85rem'
+            }}
+          />
+        </form>
+      </div>
+    </div>
+  );
+};
+
 const Hero = () => {
+  const [showTerminal, setShowTerminal] = useState(false);
+
   return (
     <section id="home" className="section" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative', paddingTop: '80px', overflow: 'hidden' }}>
       
@@ -60,8 +196,8 @@ const Hero = () => {
           style={{ position: 'relative', zIndex: 10 }}
         >
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '8px 16px', background: 'rgba(0, 255, 157, 0.1)', borderRadius: '20px', border: '1px solid rgba(0, 255, 157, 0.2)', marginBottom: '2rem' }}>
-            <Terminal size={16} color="var(--primary)" />
-            <span className="mono-text" style={{ fontSize: '0.9rem', margin: 0 }}>Hello World, I am</span>
+            <TerminalIcon size={16} color="var(--primary)" />
+            <span className="mono-text" style={{ fontSize: '0.9rem', margin: 0 }}>System Node: ONLINE</span>
           </div>
           
           <div style={{ marginBottom: '1rem' }}>
@@ -78,26 +214,78 @@ const Hero = () => {
               <Typewriter texts={['Cybersecurity undergraduate.', 'Full Stack Developer.', 'Security Enthusiast.']} delay={100} />
             </span>
           </h2>
-          <p style={{ fontSize: '1.1rem', maxWidth: '500px', marginBottom: '3rem', color: 'var(--text-muted)' }}>
+
+          <p style={{ fontSize: '1.1rem', maxWidth: '500px', marginBottom: '2.5rem', color: 'var(--text-muted)' }}>
             A motivated and detail-oriented Cybersecurity undergraduate with a passion for securing modern applications. 
-            Specializing in secure coding, vulnerability assessment, and full-stack web development.
+            Specializing in secure coding and vulnerability assessment.
           </p>
           
-          <div style={{ display: 'flex', gap: '1.5rem', flexWrap: 'wrap' }}>
-            <a href="#projects" className="btn btn-primary" style={{ padding: '1rem 2rem' }}>
-              Check out my work <ArrowRight size={18} />
+          {/* Animated Terminal Section */}
+          <AnimatePresence>
+            {showTerminal && (
+              <motion.div 
+                initial={{ opacity: 0, height: 0, marginBottom: 0 }}
+                animate={{ opacity: 1, height: 'auto', marginBottom: '2.5rem' }}
+                exit={{ opacity: 0, height: 0, marginBottom: 0 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                style={{ overflow: 'hidden' }}
+              >
+                <CyberTerminal />
+              </motion.div>
+            )}
+          </AnimatePresence>
+          
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <a href="#contact" className="btn btn-primary" style={{ padding: '0.8rem 1.5rem', fontSize: '0.9rem' }}>
+              Contact us <ArrowRight size={18} />
             </a>
-            <a href="#contact" className="btn btn-outline" style={{ padding: '1rem 2rem' }}>
-              Get In Touch
-            </a>
-            <a 
+            
+            <button 
+              onClick={() => setShowTerminal(!showTerminal)}
+              className="btn btn-outline" 
+              style={{ 
+                padding: '0.8rem 1.5rem', 
+                fontSize: '0.9rem',
+                borderColor: showTerminal ? 'var(--primary)' : 'rgba(0,255,157,0.3)',
+                background: showTerminal ? 'rgba(0,255,157,0.1)' : 'transparent',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px'
+              }}
+            >
+              <TerminalIcon size={18} /> {showTerminal ? 'Close Terminal' : 'System Access'}
+            </button>
+
+            <motion.a 
               href="/CV.pdf" 
               download="Nilupul_Thisaranga_CV.pdf"
               className="btn btn-outline" 
-              style={{ padding: '1rem 2rem', display: 'flex', alignItems: 'center', gap: '8px', border: '1px solid rgba(0,255,157,0.4)', color: 'var(--primary)' }}
+              style={{ 
+                padding: '0.8rem 1.5rem', 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '8px', 
+                border: '1px solid rgba(0,255,157,0.4)', 
+                color: 'var(--primary)',
+                background: 'rgba(0,255,157,0.02)',
+                position: 'relative',
+                overflow: 'hidden',
+                fontSize: '0.9rem'
+              }}
+              animate={{ 
+                boxShadow: ["0 0 0px rgba(0,255,157,0)", "0 0 20px rgba(0,255,157,0.2)", "0 0 0px rgba(0,255,157,0)"],
+                borderColor: ["rgba(0,255,157,0.4)", "rgba(0,255,157,0.8)", "rgba(0,255,157,0.4)"]
+              }}
+              transition={{ 
+                duration: 2.5, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+              whileHover={{ scale: 1.05, background: 'rgba(0,255,157,0.1)' }}
+              whileTap={{ scale: 0.95 }}
             >
-              <Download size={18} /> Download CV
-            </a>
+              <Download size={18} /> CV
+            </motion.a>
           </div>
         </motion.div>
 
@@ -124,11 +312,9 @@ const Hero = () => {
               overflow: 'hidden'
             }}
           >
-            {/* Holographic overlay */}
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '4px', background: 'var(--primary)', boxShadow: '0 0 20px var(--primary)' }} />
             <div style={{ position: 'absolute', top: '-50%', left: '-50%', width: '200%', height: '200%', background: 'linear-gradient(to right, transparent, rgba(255,255,255,0.05), transparent)', transform: 'rotate(30deg)', pointerEvents: 'none' }} />
             
-            {/* Card Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem', borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '0.8rem' }}>
               <div>
                 <div className="mono-text" style={{ fontSize: '0.65rem', color: 'var(--text-muted)', letterSpacing: '2px' }}>UNIVERSITY CREDENTIAL</div>
@@ -137,9 +323,7 @@ const Hero = () => {
               <Shield size={24} color="var(--primary)" />
             </div>
 
-            {/* Photo & Details Flex */}
             <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
-              {/* The actual photo container - small and professional */}
               <div style={{ 
                 width: '90px', 
                 height: '110px', 
@@ -157,16 +341,14 @@ const Hero = () => {
                     width: '100%', 
                     height: '100%', 
                     objectFit: 'cover',
-                    objectPosition: 'center 20%', /* Focuses on the upper body/face for full-body shots */
+                    objectPosition: 'center 20%',
                     opacity: 0.95 
                   }} 
                 />
-                {/* Scanline effect over photo */}
                 <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 255, 157, 0.15) 2px, rgba(0, 255, 157, 0.15) 4px)', pointerEvents: 'none', mixBlendMode: 'overlay' }} />
                 <div style={{ position: 'absolute', inset: 0, boxShadow: 'inset 0 0 15px rgba(0,255,157,0.3)', pointerEvents: 'none' }} />
               </div>
 
-              {/* Data points */}
               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '0.4rem' }}>
                 <div>
                   <div className="mono-text" style={{ fontSize: '0.55rem', color: 'var(--text-muted)' }}>IDENTIFICATION</div>
@@ -186,7 +368,6 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Barcode / Fingerprint area */}
             <div style={{ borderTop: '1px dashed rgba(255,255,255,0.1)', paddingTop: '1rem', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
               <div>
                 <div className="mono-text" style={{ fontSize: '0.55rem', color: 'var(--text-muted)', marginBottom: '4px' }}>BIOMETRIC HASH</div>
@@ -202,7 +383,6 @@ const Hero = () => {
         </motion.div>
       </div>
       
-      {/* Scroll indicator */}
       <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', zIndex: 20 }}>
         <motion.a 
           href="#skills" 
