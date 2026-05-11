@@ -91,8 +91,8 @@ const Contact = () => {
           {/* Section Header */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem', justifyContent: 'center' }}>
             <div style={{ height: '1px', flex: 1, background: 'var(--border-color)', maxWidth: '100px' }}></div>
-            <h2 style={{ margin: 0, textAlign: 'center' }}>
-              <span className="mono-text" style={{ fontSize: '1.2rem', marginRight: '0.5rem', display: 'block', color: 'var(--primary)' }}>06. What's Next?</span>
+            <h2 style={{ margin: 0, textAlign: 'center', fontSize: 'clamp(1.6rem, 3vw, 2.4rem)' }}>
+              <span className="mono-text" style={{ fontSize: '1rem', marginRight: '0.5rem', display: 'block', color: 'var(--primary)' }}>08. What's Next?</span>
               Get In Touch
             </h2>
             <div style={{ height: '1px', flex: 1, background: 'var(--border-color)', maxWidth: '100px' }}></div>

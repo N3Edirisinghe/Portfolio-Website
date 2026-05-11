@@ -20,6 +20,7 @@ const Navbar = () => {
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Research', href: '#research' },
     { name: 'Education', href: '#education' },
     { name: 'Contact', href: '#contact' },
   ];
@@ -39,7 +40,7 @@ const Navbar = () => {
       }}
     >
       <div className="container flex justify-between items-center" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <a href="#home" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '1.4rem', fontWeight: 800, fontFamily: 'var(--font-display)', color: 'var(--text-main)', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+        <a href="#home" className="logo" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '1.15rem', fontWeight: 800, fontFamily: 'var(--font-display)', color: 'var(--text-main)', textDecoration: 'none', whiteSpace: 'nowrap' }}>
           <div style={{
             display: 'flex',
             alignItems: 'center',
@@ -58,7 +59,7 @@ const Navbar = () => {
 
         {/* Desktop Nav */}
         <nav style={{ display: 'none' }} className="md-flex">
-          <ul style={{ display: 'flex', gap: '1rem', listStyle: 'none', margin: 0, padding: 0 }}>
+          <ul style={{ display: 'flex', gap: '0.15rem', listStyle: 'none', margin: 0, padding: 0 }}>
             {navLinks.map((link, index) => (
               <li key={link.name} style={{ position: 'relative' }}>
                 <a 
@@ -68,11 +69,11 @@ const Navbar = () => {
                   style={{ 
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '6px',
-                    padding: '8px 16px',
-                    fontSize: '0.85rem', 
+                    gap: '4px',
+                    padding: '6px 10px',
+                    fontSize: '0.72rem', 
                     fontWeight: 600, 
-                    letterSpacing: '1px', 
+                    letterSpacing: '0.5px', 
                     textTransform: 'uppercase',
                     color: 'var(--text-main)',
                     textDecoration: 'none',
@@ -81,7 +82,7 @@ const Navbar = () => {
                   }}
                 >
                   <span className="mono-text" style={{ 
-                    fontSize: '0.75rem', 
+                    fontSize: '0.65rem', 
                     color: 'var(--primary)',
                     opacity: 0.8
                   }}>
