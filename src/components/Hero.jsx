@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Terminal as TerminalIcon, ArrowRight, Shield, Download, X, Maximize2, ChevronRight } from 'lucide-react';
 import profilePic from '../assets/Profile Pic.png';
-import cinematicBg from '../assets/cinematic_bg.png';
 
 const Typewriter = ({ texts, delay = 100 }) => {
   const [currentText, setCurrentText] = useState('');
@@ -178,99 +177,39 @@ const CyberTerminal = () => {
 
 const Hero = () => {
   const [showTerminal, setShowTerminal] = useState(false);
-  const containerRef = useRef(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  const midY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const frontY = useTransform(scrollYProgress, [0, 1], ["0%", "80%"]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const textScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.9]);
 
   return (
-    <section 
-      ref={containerRef}
-      id="home" 
-      className="section perspective-container" 
-      style={{ 
-        minHeight: '100vh', 
-        paddingTop: '8rem', 
-        position: 'relative', 
-        overflow: 'hidden',
-        background: '#020606'
-      }}
-    >
-      {/* Layer 1: Cinematic Background */}
-      <motion.div 
-        style={{ 
-          position: 'absolute',
-          inset: '-10%',
-          backgroundImage: `url(${cinematicBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          y: bgY,
-          opacity: 0.4,
-          filter: 'blur(4px)',
-          zIndex: 0
-        }}
-      />
-
-      {/* Layer 2: Floating Particle Field */}
-      <motion.div 
-        style={{ 
-          position: 'absolute',
-          inset: 0,
-          y: midY,
-          zIndex: 1,
-          pointerEvents: 'none'
-        }}
-      >
-        {[...Array(20)].map((_, i) => (
+    <section id="home" className="section" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'center', position: 'relative', paddingTop: '80px', overflow: 'hidden' }}>
+      
+      {/* Animated Flowing Lines */}
+      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 0, opacity: 0.3 }}>
+        {[...Array(3)].map((_, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0 }}
             animate={{ 
-              opacity: [0.1, 0.3, 0.1],
-              scale: [1, 1.2, 1],
-              x: Math.random() * 100 + '%',
-              y: Math.random() * 100 + '%'
+              x: ['-100%', '200%'],
+              y: [100 * i, 150 * i],
+              opacity: [0, 0.5, 0]
             }}
             transition={{ 
-              duration: 10 + Math.random() * 10, 
+              duration: 10 + i * 2, 
               repeat: Infinity, 
-              ease: "linear" 
+              ease: "linear",
+              delay: i * 3
             }}
             style={{ 
-              position: 'absolute',
-              width: Math.random() * 4 + 'px',
-              height: Math.random() * 4 + 'px',
-              background: 'var(--primary)',
-              borderRadius: '50%',
-              boxShadow: '0 0 15px var(--primary)',
-              filter: 'blur(1px)'
+              position: 'absolute', 
+              width: '400px', 
+              height: '1px', 
+              background: `linear-gradient(to right, transparent, var(--primary), transparent)`,
+              filter: 'blur(2px)',
+              transform: 'rotate(-20deg)'
             }}
           />
         ))}
-      </motion.div>
+      </div>
 
-      {/* Layer 3: Main Content */}
-      <motion.div 
-        className="container" 
-        style={{ 
-          display: 'grid', 
-          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-          gap: '4rem', 
-          alignItems: 'center',
-          position: 'relative',
-          zIndex: 10,
-          opacity: textOpacity,
-          scale: textScale
-        }}
-      >
+      <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '4rem', alignItems: 'center' }}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -411,47 +350,10 @@ const Hero = () => {
             </div>
           </div>
         </motion.div>
-      </motion.div>
-
-      {/* Layer 4: Foreground Glass Elements */}
-      <motion.div 
-        style={{ 
-          position: 'absolute',
-          top: '20%',
-          right: '-5%',
-          width: '300px',
-          height: '400px',
-          background: 'rgba(255, 255, 255, 0.02)',
-          backdropFilter: 'blur(40px)',
-          borderRadius: '40px',
-          border: '1px solid rgba(255, 255, 255, 0.05)',
-          y: frontY,
-          rotate: 15,
-          zIndex: 20,
-          pointerEvents: 'none'
-        }}
-      />
+      </div>
       
-      <motion.div 
-        style={{ 
-          position: 'absolute',
-          bottom: '10%',
-          left: '-5%',
-          width: '200px',
-          height: '200px',
-          background: 'rgba(0, 245, 212, 0.01)',
-          backdropFilter: 'blur(20px)',
-          borderRadius: '100px',
-          border: '1px solid rgba(0, 245, 212, 0.05)',
-          y: frontY,
-          rotate: -10,
-          zIndex: 20,
-          pointerEvents: 'none'
-        }}
-      />
-
-      <div style={{ position: 'absolute', bottom: '2rem', left: '50%', transform: 'translateX(-50%)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1rem', zIndex: 30 }}>
-          <motion.div 
+      <div style={{ position: 'absolute', bottom: '3rem', left: '50%', transform: 'translateX(-50%)', zIndex: 20 }}>
+        <motion.div 
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
           style={{ width: '24px', height: '40px', border: '2px solid rgba(255,255,255,0.1)', borderRadius: '12px', display: 'flex', justifyContent: 'center', padding: '6px' }}

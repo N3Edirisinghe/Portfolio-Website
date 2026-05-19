@@ -11,13 +11,10 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
 import NetworkBackground from './components/NetworkBackground';
-import ParallaxProvider from './components/ParallaxProvider';
 
 function App() {
   return (
     <>
-      <div className="vignette"></div>
-      <ParallaxProvider />
       <CustomCursor />
       <NetworkBackground />
       <div className="bg-grid"></div>
