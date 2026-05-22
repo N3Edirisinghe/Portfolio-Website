@@ -65,7 +65,7 @@ const Navbar = () => {
             <Cpu color="var(--primary)" size={18} />
           </div>
           <span style={{ fontStyle: 'italic' }}>
-            Nilupul <span style={{ fontWeight: 600, color: 'var(--primary)', fontStyle: 'normal' }}>T.</span>
+            Nilupul <span style={{ fontWeight: 600, color: 'var(--primary)', fontStyle: 'normal' }}>Thisaranga</span>
           </span>
         </a>
 

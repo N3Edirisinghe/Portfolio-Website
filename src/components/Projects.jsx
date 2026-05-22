@@ -11,7 +11,7 @@ const Projects = () => {
     {
       title: "Neurocloud",
       subtitle: "Group Project",
-      description: "A full-stack application built to track user moods with secure data handling. Features a responsive UI and efficient frontend & backend integration. This project involved extensive user research and implementing secure authentication flows to protect sensitive user data.",
+      description: "A full-stack mood tracking app with secure data handling, responsive UI, and seamless frontend-backend integration.",
       tech: ["Kotlin", "Next.js", "Node.js", "MongoDB"],
       github: "https://github.com/N3Edirisinghe/Neuro-Cloud-Mood-Tracking-Application",
       demo: "https://neurocloud.netlify.app",
@@ -23,7 +23,7 @@ const Projects = () => {
     {
       title: "Neuronix",
       subtitle: "Group Project",
-      description: "Designed UI/UX for a sign language detection and learning platform. Focused on accessibility, clean layout, and ease of navigation for diverse users. The interface was rigorously tested with target demographics to ensure maximum usability.",
+      description: "UI/UX design for a sign language detection and learning platform focused on accessibility and intuitive navigation.",
       tech: ["Figma", "UI/UX Design"],
       github: "https://github.com/N3Edirisinghe",
       demo: "https://www.figma.com/design/6qrctqUdIPNty42dLKB73f/Neuronix?node-id=0-1&t=VnmTWjtZzqG6bNEo-1",
@@ -35,7 +35,7 @@ const Projects = () => {
     {
       title: "Findit",
       subtitle: "Group Project",
-      description: "Built a secure lost and found web app using React.js, Node.js, and MySQL. Implemented user authentication and robust data handling. The system matches reported lost items with found items using an optimized database schema.",
+      description: "A secure lost and found web app with user authentication and smart item matching using an optimized database.",
       tech: ["React.js", "Node.js", "MySQL"],
       github: "https://github.com/N3Edirisinghe",
       demo: "#",
@@ -47,7 +47,7 @@ const Projects = () => {
     {
       title: "Ovumate",
       subtitle: "Group Project",
-      description: "A cycle tracking application designed with user privacy and accurate predictions in mind. Features a highly intuitive interface and secure data management. Health metrics are encrypted and stored locally whenever possible to ensure maximum security.",
+      description: "A privacy-focused cycle tracking app with accurate predictions, encrypted health metrics, and secure local storage.",
       tech: ["React Native", "Node.js", "MongoDB"],
       github: "https://github.com/N3Edirisinghe/Ovumate-Cycle-Tracking-App-",
       demo: "https://ovumate.netlify.app",
@@ -59,7 +59,7 @@ const Projects = () => {
     {
       title: "Lanka Smartmart",
       subtitle: "Group Project",
-      description: "A comprehensive e-commerce platform built for the Sri Lankan market. Implemented secure payment gateways, inventory management, and a user-friendly shopping experience. Includes vendor dashboards and automated email receipts.",
+      description: "An e-commerce platform for the Sri Lankan market with secure payments, inventory management, and vendor dashboards.",
       tech: ["React.js", "Node.js", "Express", "MongoDB"],
       github: "https://github.com/N3Edirisinghe/Lanka_Smart_Mart",
       demo: "#",
@@ -72,7 +72,7 @@ const Projects = () => {
     {
       title: "Malsimx",
       subtitle: "Group Project",
-      description: "A collaborative digital solution built to address specific user needs with a focus on scalable architecture and secure implementation. We designed a microservices architecture to handle high traffic and ensure platform stability.",
+      description: "A malware simulation platform with scalable microservices architecture for security research and analysis.",
       tech: ["React.js", "Node.js", "MongoDB"],
       github: "https://github.com/N3Edirisinghe/MalSimX",
       demo: "#",
@@ -84,7 +84,7 @@ const Projects = () => {
     {
       title: "AetherNet",
       subtitle: "Group Project (Currently Developing)",
-      description: "A high-performance networking engine being scaled to support 10Gbps+ throughput. Currently implementing advanced optimizations including kernel-bypass (AF_XDP), SIMD-accelerated packet inspection, and lock-free multi-threading for enterprise-grade scalability.",
+      description: "A high-performance networking engine targeting 10Gbps+ throughput with kernel-bypass and SIMD-accelerated packet inspection.",
       tech: ["C++", "AF_XDP", "Networking", "SIMD"],
       github: "https://github.com/N3Edirisinghe",
       demo: "#",
@@ -99,7 +99,7 @@ const Projects = () => {
     {
       title: "UniVote",
       subtitle: "Individual Project",
-      description: "A secure, digital voting platform designed for university elections. Implemented robust authentication and a streamlined voting interface to ensure election integrity and user accessibility.",
+      description: "A secure digital voting platform for university elections with robust authentication and streamlined voting interface.",
       tech: ["React.js", "Node.js", "MongoDB"],
       github: "https://github.com/N3Edirisinghe/UniVote",
       demo: "https://sltc-voting.vercel.app/",
@@ -398,10 +398,12 @@ const ProjectCard = ({ project, index, icon, onClick }) => {
       </p>
       
       <p style={{ fontSize: '0.95rem', flex: 1, color: 'var(--text-muted)', lineHeight: '1.7', marginBottom: '2rem' }}>
-        {project.description}
+        {project.description && project.description.length > 100 
+          ? project.description.substring(0, 100) + '...' 
+          : project.description}
       </p>
       
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '2rem' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '2rem', marginTop: 'auto' }}>
         {project.tech && project.tech.slice(0, 3).map((tech, i) => (
           <span key={i} style={{ fontSize: '0.7rem', color: 'rgba(255,255,255,0.4)', letterSpacing: '1px' }}>
             {tech}

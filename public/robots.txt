@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nilupulthisarangaedirisinghe.netlify.app/sitemap.xml

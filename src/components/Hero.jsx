@@ -75,7 +75,7 @@ const CyberTerminal = () => {
         response = 'Commands: whoami, projects, skills, contact, clear, time';
         break;
       case 'whoami':
-        response = 'Nilupul Thisaranga Edirisinghe — Cybersecurity Strategist & Full Stack Architect.';
+        response = 'Nilupul Thisaranga Edirisinghe — Cybersecurity Undergraduate & Full Stack Developer.';
         break;
       case 'projects':
         response = 'DEPLOYED: UniVote, Lanka Smartmart, Secure-Scan-V2...';
@@ -341,12 +341,12 @@ const Hero = () => {
             </div>
             
             <h2 style={{ fontSize: '1.8rem', marginBottom: '0.5rem', color: '#fff' }}>Nilupul</h2>
-            <p className="mono-text" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '3px', opacity: 0.6, marginBottom: '2rem' }}>Senior Analyst / Dev</p>
+            <p className="mono-text" style={{ fontSize: '0.7rem', textTransform: 'uppercase', letterSpacing: '3px', opacity: 0.6, marginBottom: '2rem' }}>Undergraduate | Developer</p>
             
             <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem' }}>
               <Shield size={20} color="var(--primary)" opacity={0.5} />
               <div style={{ width: '1px', height: '20px', background: 'rgba(255,255,255,0.1)' }} />
-              <span className="mono-text" style={{ fontSize: '0.7rem' }}>LVL_99_SEC</span>
+              <span className="mono-text" style={{ fontSize: '0.7rem' }}>CYBERSEC_UG</span>
             </div>
           </div>
         </motion.div>
